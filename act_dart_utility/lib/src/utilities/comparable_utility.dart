@@ -28,11 +28,8 @@ sealed class ComparableUtility {
 
   /// This method allows to compare two nullable comparable objects.
   ///
-  /// The [nullIsBigger] parameter allows to choose if the null value is bigger than the non-null
-  /// value. If both values are null, they are considered equal.
-  ///
-  /// If one of the values is null, the method will return [defaultBiggerValue] if the null value is
-  /// considered bigger, and [defaultSmallerValue] if it is considered smaller.
+  /// If one of the values is null, the [nullIsBigger] parameter allows to choose if the null value
+  /// is bigger than the non-null value.
   /// If both values are null, the method will return [defaultEqualValue].
   /// If both values are non-null, the method will return the result of the compareTo method.
   ///

@@ -6,7 +6,7 @@
 import 'dart:typed_data' show Uint16List, Uint8List;
 
 import 'package:act_dart_utility/src/errors/act_unsupported_type_error.dart';
-import 'package:act_dart_utility/src/utilities/bool_helper.dart';
+import 'package:act_dart_utility/src/utilities/bool_utility.dart';
 import 'package:act_dart_utility/src/utilities/byte_utility.dart';
 
 /// This class provides a set of [String] helpers, not provided by Dart.
@@ -16,7 +16,7 @@ import 'package:act_dart_utility/src/utilities/byte_utility.dart';
 /// - parsing methods
 /// - sanitization methods such as MAC address sanitization and word capitalization
 /// - test methods such as email validity verification
-abstract class StringUtility {
+sealed class StringUtility {
   /// MAC address bytes separator
   static const macAddressSeparator = ":";
 
@@ -80,7 +80,7 @@ abstract class StringUtility {
         castedValue = value;
         break;
       case const (bool):
-        castedValue = BoolHelper.tryParse(value);
+        castedValue = BoolUtility.tryParse(value);
       default:
         throw ActUnsupportedTypeError<T>();
     }

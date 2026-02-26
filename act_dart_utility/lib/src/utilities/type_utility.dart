@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 /// Utility class to help the type management
-class TypeUtility {
+sealed class TypeUtility {
   /// Compare if the [type] given is equals to the [value] type
   // The call of this method is to compare the value type with the type argument given; therefore
   // the value type has to be dynamic

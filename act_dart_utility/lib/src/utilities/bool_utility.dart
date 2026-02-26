@@ -21,7 +21,15 @@
 ///
 /// Extending bool type (to inject parse functions in it for example)
 /// is unfortunately prohibited by Dart.
-abstract class BoolHelper {
+sealed class BoolUtility {
+  /// This is the integer value used to represent false
+  static const falseIntValue = 0;
+
+  /// Parse boolean value from an integer value.
+  ///
+  /// If the [value] is equal to [falseIntValue], false is returned, otherwise true is returned.
+  static bool parseFromInt(int value) => value != falseIntValue;
+
   /// Parse [source] as a [bool].
   ///
   /// The [source] is expected to be either "true", "1", "false" or "0", whichever case

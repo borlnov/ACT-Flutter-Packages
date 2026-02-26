@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 /// Contains utility methods linked to the usage of DateTime
-abstract class DateTimeUtility {
+sealed class DateTimeUtility {
   /// The constructed [DateTime] represents 1970-01-01T00:00:00Z (so in UTC)
   static final epoch = DateTime.utc(1970);
 

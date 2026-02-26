@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:act_logger_manager/act_logger_manager.dart';
 
 /// Contains useful methods to manage JSON object
-abstract class JsonUtility {
+sealed class JsonUtility {
   /// Get one element from JSON object
   ///
   /// Find the element thanks to the [key] given. If the element can be not present in the JSON set
