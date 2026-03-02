@@ -25,10 +25,21 @@ sealed class BoolUtility {
   /// This is the integer value used to represent false
   static const falseIntValue = 0;
 
+  /// This is the integer value used to represent true
+  static const trueIntValue = 1;
+
   /// Parse boolean value from an integer value.
   ///
   /// If the [value] is equal to [falseIntValue], false is returned, otherwise true is returned.
   static bool parseFromInt(int value) => value != falseIntValue;
+
+  /// Convert a boolean value to an integer value.
+  ///
+  /// If the [value] is true, [trueIntValue] is returned, otherwise [falseIntValue] is returned.
+  // In that case the parameter is not really positional since it is the only one and we know what
+  // it is, so we can ignore the warning about positional boolean parameters.
+  // ignore: avoid_positional_boolean_parameters
+  static int toInt(bool value) => value ? trueIntValue : falseIntValue;
 
   /// Parse [source] as a [bool].
   ///
