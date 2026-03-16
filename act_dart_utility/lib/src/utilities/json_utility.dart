@@ -398,7 +398,7 @@ sealed class JsonUtility {
     try {
       data = jsonDecode(strJson) as T;
     } catch (error) {
-      loggerManager.w("Cannot parse to json, the response body: $strJson");
+      loggerManager.w("Cannot parse to json, the response body: $strJson, the error: $error");
     }
 
     return data;
