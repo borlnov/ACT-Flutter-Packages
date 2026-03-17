@@ -4,8 +4,9 @@
 
 /// Utility class for [Duration] objects.
 sealed class DurationUtility {
-  /// This is the regular expression to parse a time zone offset string in the format of ±hh:mm
-  static final timeZoneOffsetRegexp = RegExp('([+-])?([0-9]{1,2}):([0-9]{1,2})');
+  /// This is the regular expression to parse a time zone offset string in the format of
+  /// ±hh:mm, ±hhmm, ±hh, or Z (for UTC time zone)
+  static final timeZoneOffsetRegexp = RegExp('(?:([+-])?([0-9]{1,2}):?([0-9]{1,2})?)|([zZ])');
 
   /// This is the index of the sign group in the time zone offset regular expression
   static const _timeZoneOffsetSignIndex = 1;
@@ -15,6 +16,9 @@ sealed class DurationUtility {
 
   /// This is the index of the minutes group in the time zone offset regular expression
   static const _timeZoneOffsetMinutesIndex = 3;
+
+  /// This is the index of the UTC time zone group in the time zone offset regular expression
+  static const _timeZoneOffsetZIndex = 4;
 
   /// This is the sign used in time zone offset string to indicate a negative offset
   static const _timeZoneOffsetMinusSign = '-';
@@ -66,27 +70,39 @@ sealed class DurationUtility {
       return null;
     }
 
-    if (match.groupCount < _timeZoneOffsetMinutesIndex) {
-      return null;
+    final zGroup = match.group(_timeZoneOffsetZIndex);
+    if (zGroup != null) {
+      // The time zone offset is Z, which means UTC time zone
+      return Duration.zero;
     }
 
-    final sign = match.group(_timeZoneOffsetSignIndex);
+    // From this point, we are sure that the time zone offset is in the format of ±hh:mm, ±hhmm, or
+    // ±hh
 
+    final sign = match.group(_timeZoneOffsetSignIndex);
     var signFactor = _timeZoneOffsetPositiveFactor;
     if (sign == _timeZoneOffsetMinusSign) {
       signFactor = _timeZoneOffsetNegativeFactor;
     }
 
+    var hours = 0;
+    var minutes = 0;
+
     final hoursGroup = match.group(_timeZoneOffsetHoursIndex);
     final minutesGroup = match.group(_timeZoneOffsetMinutesIndex);
-    if (hoursGroup == null || minutesGroup == null) {
-      return null;
+
+    if (hoursGroup != null) {
+      // Because the regex verify that the hours group is composed of 1 or 2 digits, we can be sure
+      // that the parsing will not fail.
+      // Therefore, we don't return null if the parsing fails
+      hours = int.tryParse(hoursGroup) ?? 0;
     }
 
-    final hours = int.tryParse(hoursGroup);
-    final minutes = int.tryParse(minutesGroup);
-    if (hours == null || minutes == null) {
-      return null;
+    if (minutesGroup != null) {
+      // Because the regex verify that the minutes group is composed of 1 or 2 digits, we can be
+      // sure that the parsing will not fail.
+      // Therefore, we don't return null if the parsing fails
+      minutes = int.tryParse(minutesGroup) ?? 0;
     }
 
     return Duration(hours: signFactor * hours, minutes: signFactor * minutes);
