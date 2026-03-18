@@ -18,7 +18,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 /// Builder for creating the BleManager
-class BleBuilder<C extends MixinBleConf> extends AbstractPeriphBuilder<BleManager> {
+class BleBuilder<C extends MixinBleConf>
+    extends AbstractPeriphBuilder<BleManager> {
   /// A factory to create a manager instance
   BleBuilder() : super(() => BleManager(confGetter: globalGetIt().get<C>));
 
@@ -65,8 +66,10 @@ class BleManager extends AbstractPeriphManager {
   })  : _flutterBle = FlutterReactiveBle(),
         _confGetter = confGetter,
         _bleReInitCtrl = StreamController<void>.broadcast() {
-    bleGapService = BleGapService(bleManager: this, flutterReactiveBle: _flutterBle);
-    bleGattService = BleGattService(bleManager: this, flutterReactiveBle: _flutterBle);
+    bleGapService =
+        BleGapService(bleManager: this, flutterReactiveBle: _flutterBle);
+    bleGattService =
+        BleGattService(bleManager: this, flutterReactiveBle: _flutterBle);
     _bleStatusSub = _flutterBle.statusStream.listen(_onBleStatusUpdated);
     _onBleStatusUpdated(_flutterBle.status);
   }
@@ -85,7 +88,8 @@ class BleManager extends AbstractPeriphManager {
 
     // We get the "display scanned device in logs" information from env manager and set it to the
     // GAP service
-    bleGapService.displayScannedDeviceInLogs = _confGetter().displayScannedDeviceInLogs.load();
+    bleGapService.displayScannedDeviceInLogs =
+        _confGetter().displayScannedDeviceInLogs.load();
 
     await bleGattService.initLifeCycle();
   }
@@ -213,7 +217,8 @@ class BleManager extends AbstractPeriphManager {
           false,
           "The view used to request the user hasn't returned the service status as "
           "expected, it's a problem of development");
-      appLogger().w("The view used to request the user hasn't returned the permission status");
+      appLogger().w(
+          "The view used to request the user hasn't returned the permission status");
       return _flutterBle.status;
     }
 
@@ -235,7 +240,8 @@ class BleManager extends AbstractPeriphManager {
     }
 
     // We wait to receive a BLE status different of unauthorized before continue
-    await _waitForStatus(isExpectedStatus: (status) => status != BleStatus.unauthorized);
+    await _waitForStatus(
+        isExpectedStatus: (status) => status != BleStatus.unauthorized);
 
     return true;
   }

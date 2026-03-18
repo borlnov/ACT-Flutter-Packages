@@ -8,7 +8,8 @@ import 'dart:async';
 import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_ble_manager/act_ble_manager.dart';
 import 'package:act_ble_manager/src/data/error_messages.dart' as error_messages;
-import 'package:act_ble_manager/src/data/scan_constants.dart' as ble_scan_constants;
+import 'package:act_ble_manager/src/data/scan_constants.dart'
+    as ble_scan_constants;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:mutex/mutex.dart';
@@ -91,8 +92,10 @@ class BleGapService extends AbsWithLifeCycle {
         displayScannedDeviceInLogs = false,
         _deviceAdvServiceUuidToSearch = {},
         super() {
-    _enabledSub = _bleManager.enabledStream.listen(_onBleServiceAndPermissionsEnabled);
-    _permissionsSub = _bleManager.permissionsStream.listen(_onBleServiceAndPermissionsEnabled);
+    _enabledSub =
+        _bleManager.enabledStream.listen(_onBleServiceAndPermissionsEnabled);
+    _permissionsSub = _bleManager.permissionsStream
+        .listen(_onBleServiceAndPermissionsEnabled);
     _libReInitSub = _bleManager.libReInitStream.listen(_onLibReInit);
   }
 
@@ -118,7 +121,8 @@ class BleGapService extends AbsWithLifeCycle {
   /// To call each time we want to start a scan
   /// There is multiple scan modes and each uses different level of battery, so
   /// the method applies the most critical scan mode asked
-  Future<bool> _takeOne(ScanMode scanMode) async => _takeAndReleaseMutex.protect(() async {
+  Future<bool> _takeOne(ScanMode scanMode) async =>
+      _takeAndReleaseMutex.protect(() async {
         if (!_handlers.containsKey(scanMode)) {
           _handlers[scanMode] = 0;
         }
@@ -131,7 +135,8 @@ class BleGapService extends AbsWithLifeCycle {
         final previousScanMode = _currentScanMode;
 
         if (_currentScanMode != null &&
-            convertScanModeToArgs(_currentScanMode!) >= convertScanModeToArgs(highest!)) {
+            convertScanModeToArgs(_currentScanMode!) >=
+                convertScanModeToArgs(highest!)) {
           // Nothing to do because we run the app at its highest asked level
           // Current scan mode can be null (the first time) but not highest because
           // we add a +1 just before
@@ -156,7 +161,8 @@ class BleGapService extends AbsWithLifeCycle {
   /// This method is called each time an element do not more need scanning.
   /// The method will test all the scan mode previously asked and reduce the
   /// consumption, or stop the scan (if no more scan has been asked)
-  Future<void> _releaseOne(ScanMode scanMode) async => _takeAndReleaseMutex.protect(() async {
+  Future<void> _releaseOne(ScanMode scanMode) async =>
+      _takeAndReleaseMutex.protect(() async {
         // If we release it means that we takeOne at least once with this scanMode
         _handlers[scanMode] = _handlers[scanMode]! - 1;
 
@@ -170,7 +176,8 @@ class BleGapService extends AbsWithLifeCycle {
         }
 
         // CurrentScanMode can't be null here
-        if (convertScanModeToArgs(highest) == convertScanModeToArgs(_currentScanMode!)) {
+        if (convertScanModeToArgs(highest) ==
+            convertScanModeToArgs(_currentScanMode!)) {
           // That means that there is nothing to do
           return;
         }
@@ -199,8 +206,9 @@ class BleGapService extends AbsWithLifeCycle {
     if (!await _bleManager.checkAndAskForPermissionsAndServices()) {
       // This test manage the case where the user haven't accepted the BLE
       // permissions or if the BLE service isn't enabled
-      _bleManager.logsHelper.w("The user don't have accepted the BLE permission or the BLE "
-          "service isn't enabled; therefore we can't start the scan");
+      _bleManager.logsHelper
+          .w("The user don't have accepted the BLE permission or the BLE "
+              "service isn't enabled; therefore we can't start the scan");
       return false;
     }
 
@@ -243,7 +251,10 @@ class BleGapService extends AbsWithLifeCycle {
   Future<void> _updateScannedDeviceList() async {
     final devicesToRemove = <BleScannedDevice>[];
     for (final discoveredDevice in _deviceMap.values) {
-      final seconds = DateTime.now().toUtc().difference(discoveredDevice.lastSeenTs).inSeconds;
+      final seconds = DateTime.now()
+          .toUtc()
+          .difference(discoveredDevice.lastSeenTs)
+          .inSeconds;
       if (seconds > ble_scan_constants.scanMaxTimeDeviceDisappeared.inSeconds) {
         devicesToRemove.add(discoveredDevice);
       }
@@ -281,7 +292,8 @@ class BleGapService extends AbsWithLifeCycle {
           );
     } catch (error) {
       result = false;
-      _bleManager.logsHelper.w('An exception occurred when scanning devices: $error');
+      _bleManager.logsHelper
+          .w('An exception occurred when scanning devices: $error');
     }
 
     return result;
@@ -297,7 +309,8 @@ class BleGapService extends AbsWithLifeCycle {
   }
 
   /// Add scan device to device list and send event on stream
-  Future<void> _addScanDeviceCallback(DiscoveredDevice discoveredDevice) async =>
+  Future<void> _addScanDeviceCallback(
+          DiscoveredDevice discoveredDevice) async =>
       _bleAccessMutex.protect(() async {
         String? keyFound;
 
@@ -308,8 +321,9 @@ class BleGapService extends AbsWithLifeCycle {
         }
 
         if (displayScannedDeviceInLogs && discoveredDevice.name.isNotEmpty) {
-          _bleManager.logsHelper.d('Device discovered, id: ${discoveredDevice.id}, '
-              'name: ${discoveredDevice.name}');
+          _bleManager.logsHelper
+              .d('Device discovered, id: ${discoveredDevice.id}, '
+                  'name: ${discoveredDevice.name}');
         }
 
         if (keyFound != null) {
@@ -338,7 +352,8 @@ class BleGapService extends AbsWithLifeCycle {
       });
 
   /// Remove device from device list and send event on stream
-  Future<void> _removeDevice(BleScannedDevice device) async => _bleAccessMutex.protect(() async {
+  Future<void> _removeDevice(BleScannedDevice device) async =>
+      _bleAccessMutex.protect(() async {
         _deviceMap.remove(device.id);
         _scannedDevices.add(
           BleScanUpdateStatus(
@@ -359,7 +374,8 @@ class BleGapService extends AbsWithLifeCycle {
 
       highestScanMode ??= ScanMode.opportunistic;
 
-      if (convertScanModeToArgs(scanMode) > convertScanModeToArgs(highestScanMode)) {
+      if (convertScanModeToArgs(scanMode) >
+          convertScanModeToArgs(highestScanMode)) {
         highestScanMode = scanMode;
       }
     }
@@ -369,7 +385,8 @@ class BleGapService extends AbsWithLifeCycle {
 
   /// Called when an error occurred while scanning
   Future<void> _onScanError(Object error) async {
-    _bleManager.logsHelper.e("An error occurred in the BLE scan process: $error");
+    _bleManager.logsHelper
+        .e("An error occurred in the BLE scan process: $error");
 
     if (error is! Exception) {
       return;
@@ -383,8 +400,9 @@ class BleGapService extends AbsWithLifeCycle {
     final stringError = error.toString();
 
     if (stringError.contains(error_messages.scanThrottle)) {
-      _bleManager.logsHelper.e("The scan fails with an unknown error, we try to relaunch it with "
-          "the scan timeout");
+      _bleManager.logsHelper
+          .e("The scan fails with an unknown error, we try to relaunch it with "
+              "the scan timeout");
     }
   }
 
@@ -392,20 +410,22 @@ class BleGapService extends AbsWithLifeCycle {
   ///
   /// In Android, the scan stops silently after some times, this is needed to restart the scan and
   /// keep receiving information
-  Future<void> _onScanTimeout([_]) async {
+  Future<void> _onScanTimeout(EventSink sink) async {
     if (_scanSub != null) {
-      _bleManager.logsHelper.i("The scan has been ended but we don't want it, we restart the scan");
+      _bleManager.logsHelper.i(
+          "The scan has been ended but we don't want it, we restart the scan");
       await _restartScan();
     }
   }
 
   /// Called when the BLE enabling or the permissions status has changed
-  Future<void> _onBleServiceAndPermissionsEnabled(_) async {
+  Future<void> _onBleServiceAndPermissionsEnabled(bool enabled) async {
     final enabled = _bleManager.hasPermissions && _bleManager.isEnabled;
 
     if (enabled && _currentScanMode != null && _scanSub == null) {
       // In that case, we restore the BLE status, we relaunch the scan
-      _bleManager.logsHelper.i("The ble is enabled and permissions are ok, we restart scanning");
+      _bleManager.logsHelper
+          .i("The ble is enabled and permissions are ok, we restart scanning");
 
       // We wait some times before restarting the connection after the ble is re-detected, this is
       // necessary or the lib crash silently
@@ -413,14 +433,15 @@ class BleGapService extends AbsWithLifeCycle {
 
       await _restartScan();
     } else if (!enabled && _currentScanMode != null && _scanSub != null) {
-      _bleManager.logsHelper.w("The ble has been disabled or the permissions are no more okay, we "
+      _bleManager.logsHelper.w(
+          "The ble has been disabled or the permissions are no more okay, we "
           "stop scanning");
       await _stopScan();
     }
   }
 
   /// Called when the BLE lib has been reinitialized
-  Future<void> _onLibReInit([_]) async {
+  Future<void> _onLibReInit(void never) async {
     if (_currentScanMode != null) {
       // If a scan was processing, we restart the scan
       _bleManager.logsHelper.d('Restart the scan after reinitialization');
@@ -473,7 +494,8 @@ class BleScanHandler {
   bool get active => _active;
 
   /// Returns the scanned devices
-  Stream<BleScanUpdateStatus> get scannedDevices => _bleGapService.scannedDevices;
+  Stream<BleScanUpdateStatus> get scannedDevices =>
+      _bleGapService.scannedDevices;
 
   /// Ble manager constructor
   BleScanHandler._(BleGapService bleGapService)
