@@ -22,6 +22,15 @@ class UpdatedModelEvent<M extends Equatable, U extends Object> extends Equatable
   /// The [current] object information retrieved after a modification
   final M? current;
 
+  /// True if the event is for an object creation, false otherwise
+  bool get isObjectCreated => previousUniqueId == null && current != null;
+
+  /// True if the event is for an object update, false otherwise
+  bool get isObjectUpdated => previousUniqueId != null && current != null;
+
+  /// True if the event is for an object deletion, false otherwise
+  bool get isObjectDeleted => previousUniqueId != null && current == null;
+
   /// Used as constructor when an object is created
   const UpdatedModelEvent.newObjectCreated({
     required M this.current,

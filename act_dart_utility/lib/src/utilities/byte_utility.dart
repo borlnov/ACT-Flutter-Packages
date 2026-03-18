@@ -9,7 +9,7 @@ import 'package:act_logger_manager/act_logger_manager.dart';
 /// Utility class to manage bytes
 ///
 /// It contains the limits of signed and unsigned integer and also methods to manage LSB first bytes
-abstract class ByteUtility {
+sealed class ByteUtility {
   static const int _byteMask = 0xFF;
   static const int _nbOfBitsInByte = 8;
 

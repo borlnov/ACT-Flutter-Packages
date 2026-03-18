@@ -89,25 +89,27 @@ class WidgetUtils {
         minHeight == null || maxHeight == null || (minHeight <= maxHeight),
         "If minWidth and maxWidth are given, min width value can't greater than the max width "
         "value");
+    var tmpMaxHeight = maxHeight;
+    var tmpMinHeight = minHeight;
 
     final parentHeight = MediaQuery.of(context).size.height;
 
-    if (minHeight != null && minHeight > parentHeight) {
+    if (tmpMinHeight != null && tmpMinHeight > parentHeight) {
       // The min height can't be superior to the parent size, limit the min
       // height to the parent size
-      minHeight = parentHeight;
+      tmpMinHeight = parentHeight;
     }
 
-    if (maxHeight != null && maxHeight > parentHeight) {
+    if (tmpMaxHeight != null && tmpMaxHeight > parentHeight) {
       // The max height can't be superior to the parent size, limit the max
       // height to the parent size
-      maxHeight = parentHeight;
+      tmpMaxHeight = parentHeight;
     }
 
     return getSizeElem(parentHeight,
         percentToApplyOnSize: percentToApplyOnParent,
-        maxSizeElem: maxHeight,
-        minSizeElem: minHeight);
+        maxSizeElem: tmpMaxHeight,
+        minSizeElem: tmpMinHeight);
   }
 
   /// [getWidthElemFromParent] is useful to easily get a widget width based on
@@ -126,23 +128,27 @@ class WidgetUtils {
         minWidth == null || maxWidth == null || (minWidth <= maxWidth),
         "If minWidth and maxWidth are given, min width value can't greater than the max width "
         "value");
+    var tmpMaxWidth = maxWidth;
+    var tmpMinWidth = minWidth;
 
     final parentWidth = MediaQuery.of(context).size.width;
 
-    if (minWidth != null && minWidth > parentWidth) {
+    if (tmpMinWidth != null && tmpMinWidth > parentWidth) {
       // The min width can't be superior to the parent size, limit the min width
       // to the parent size
-      minWidth = parentWidth;
+      tmpMinWidth = parentWidth;
     }
 
-    if (maxWidth != null && maxWidth > parentWidth) {
+    if (tmpMaxWidth != null && tmpMaxWidth > parentWidth) {
       // The max width can't be superior to the parent size, limit the max width
       // to the parent size
-      maxWidth = parentWidth;
+      tmpMaxWidth = parentWidth;
     }
 
     return getSizeElem(parentWidth,
-        percentToApplyOnSize: percentToApplyOnParent, maxSizeElem: maxWidth, minSizeElem: minWidth);
+        percentToApplyOnSize: percentToApplyOnParent,
+        maxSizeElem: tmpMaxWidth,
+        minSizeElem: tmpMinWidth);
   }
 
   /// Get a widget to display an icon from the [IconData] given

@@ -89,7 +89,7 @@ sealed class ConfigFromEnvUtility {
         return value;
 
       case EnvType.bool:
-        return BoolHelper.parse(value);
+        return BoolUtility.parse(value);
 
       case EnvType.number:
         if (value.contains(config_constants.decimalSeparator)) {
