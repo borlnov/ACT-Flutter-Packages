@@ -14,17 +14,17 @@ sealed class RuntimeProtectCmd {
     T? result;
     try {
       result = cmd();
-    } on Exception catch (e) {
+    } catch (error) {
       appLogger().w(
         "An exception occurred during a runtime command call"
-        "${description != null ? ' ($description)' : ''}: $e",
+        "${description != null ? ' ($description)' : ''}: $error",
       );
     }
 
     return result;
   }
 
-  /// {@macro act_ffi_utility.RuntimeProtectCmd.protectCmdCall}
+  /// {@macro act_ffi_utility.RuntimeProtectCmd.protect}
   ///
   /// Call [protect] and Returns [defaultValue] if an exception occurs.
   static T protectWithDefault<T>(
@@ -35,7 +35,7 @@ sealed class RuntimeProtectCmd {
       RuntimeProtectCmd.protect<T>(cmd, description: description) ??
       defaultValue;
 
-  /// {@macro act_ffi_utility.RuntimeProtectCmd.protectCmdCall}
+  /// {@macro act_ffi_utility.RuntimeProtectCmd.protect}
   ///
   /// {@template act_ffi_utility.RuntimeProtectCmd.protectWithCalloc}
   /// Add a [RuntimeCallocRegister] to the command, allowing it to allocate memory with calloc and
@@ -49,10 +49,10 @@ sealed class RuntimeProtectCmd {
     T? result;
     try {
       result = cmd(register);
-    } on Exception catch (e) {
+    } catch (error) {
       appLogger().w(
         "An exception occurred during a runtime command call with calloc"
-        "${description != null ? ' ($description)' : ''}: $e",
+        "${description != null ? ' ($description)' : ''}: $error",
       );
     }
 
@@ -61,7 +61,7 @@ sealed class RuntimeProtectCmd {
     return result;
   }
 
-  /// {@macro act_ffi_utility.RuntimeProtectCmd.protectCmdCall}
+  /// {@macro act_ffi_utility.RuntimeProtectCmd.protect}
   ///
   /// {@macro act_ffi_utility.RuntimeProtectCmd.protectWithCalloc}
   ///

@@ -10,7 +10,7 @@ import 'package:ffi/ffi.dart' show calloc;
 /// A register to keep track of allocated memory using calloc.
 class RuntimeCallocRegister extends Equatable {
   /// The list of pointers used for calloc allocations.
-  final List<Pointer> _pointers;
+  final List<Pointer<NativeType>> _pointers;
 
   /// Class constructor
   RuntimeCallocRegister() : _pointers = [];

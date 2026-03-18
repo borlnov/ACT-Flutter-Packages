@@ -31,9 +31,10 @@ sealed class RuntimeStringUtility {
     return String.fromCharCodes(codeUnits);
   }
 
-  /// Convert a `Pointer<Char>` buffer to a Dart [String], returning null if the pointer is null.
+  /// Convert a `Pointer<Char>` buffer to a Dart [String], returning null if the pointer equals
+  /// [nullptr].
   ///
-  /// This cast to `Utf8`
+  /// This cast to `Utf8` String.
   static String? charPointerToUtf8String({required Pointer<Char> buffer}) {
     if (buffer == nullptr) {
       return null;

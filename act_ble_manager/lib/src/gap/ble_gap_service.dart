@@ -410,7 +410,7 @@ class BleGapService extends AbsWithLifeCycle {
   ///
   /// In Android, the scan stops silently after some times, this is needed to restart the scan and
   /// keep receiving information
-  Future<void> _onScanTimeout(EventSink sink) async {
+  Future<void> _onScanTimeout(EventSink _) async {
     if (_scanSub != null) {
       _bleManager.logsHelper.i(
           "The scan has been ended but we don't want it, we restart the scan");
@@ -419,7 +419,7 @@ class BleGapService extends AbsWithLifeCycle {
   }
 
   /// Called when the BLE enabling or the permissions status has changed
-  Future<void> _onBleServiceAndPermissionsEnabled(bool enabled) async {
+  Future<void> _onBleServiceAndPermissionsEnabled(bool _) async {
     final enabled = _bleManager.hasPermissions && _bleManager.isEnabled;
 
     if (enabled && _currentScanMode != null && _scanSub == null) {
@@ -441,7 +441,7 @@ class BleGapService extends AbsWithLifeCycle {
   }
 
   /// Called when the BLE lib has been reinitialized
-  Future<void> _onLibReInit(void never) async {
+  Future<void> _onLibReInit(void _) async {
     if (_currentScanMode != null) {
       // If a scan was processing, we restart the scan
       _bleManager.logsHelper.d('Restart the scan after reinitialization');
