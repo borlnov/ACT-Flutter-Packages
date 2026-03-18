@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 name: act_oauth2_core
-description: This package contains the common elements to connect to OAuth 2.0 client from Identity
+description:
+  This package contains the common elements to connect to OAuth 2.0 client from Identity
   Providers.
 publish_to: none
 
@@ -55,4 +56,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
