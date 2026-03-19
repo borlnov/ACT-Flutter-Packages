@@ -21,7 +21,7 @@ platforms:
   windows:
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=3.0.0 <4.0.0"
 
 # Project dependencies
@@ -71,7 +71,7 @@ dev_dependencies:
     sdk: flutter
 
   # Recommended lints for Flutter apps
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 dependency_overrides:
   # This is needed to fix problem with building for Android app

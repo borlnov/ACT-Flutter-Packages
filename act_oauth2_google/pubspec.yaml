@@ -3,7 +3,8 @@
 # SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 name: act_oauth2_google
-description: This package contains the needed elements to connect to a OAuth 2.0 Client through
+description:
+  This package contains the needed elements to connect to a OAuth 2.0 Client through
   Google Identity Provider.
 publish_to: none
 
@@ -52,4 +53,4 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
