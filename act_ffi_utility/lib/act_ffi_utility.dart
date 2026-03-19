@@ -4,9 +4,6 @@
 
 library;
 
-export "dart:ffi";
-export 'package:ffi/ffi.dart';
-
 export 'src/mixins/mixin_runtime_factory_to_ffi.dart';
 export 'src/models/abs_runtime_model_factory.dart';
 export 'src/models/runtime_calloc_register.dart';
