@@ -21,9 +21,9 @@ class RuntimeCallocRegister extends Equatable {
   /// e.g.:
   ///
   /// ```dart
-  /// final pointer = register.register(calloc<YourType>());
+  /// final pointer = register.add(calloc<YourType>());
   /// // or with count:
-  /// final pointer = register.register(calloc<YourType>(count));
+  /// final pointer = register.add(calloc<YourType>(count));
   /// ```
   Pointer<T> add<T extends NativeType>(Pointer<T> pointer) {
     _pointers.add(pointer);
