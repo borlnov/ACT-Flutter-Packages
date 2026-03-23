@@ -13,7 +13,8 @@ extension ActListExtension<T> on List<T> {
   /// Return a copy of current list
   ///
   /// Copy is growable by default, but can be set to not growable using [growable] argument.
-  List<T> copy({bool growable = true}) => ListUtility.copy(this, growable: growable);
+  List<T> copy({bool growable = true}) =>
+      ListUtility.copy(this, growable: growable);
 
   /// Return a copy of current list, with all occurrences of [value] removed
   ///
@@ -27,26 +28,21 @@ extension ActListExtension<T> on List<T> {
   List<T> copyWithoutValues(List<T> values, {bool growable = true}) =>
       ListUtility.copyWithoutValues(this, values, growable: growable);
 
-  /// Return a list copy with [interleave] value inserted between each item.
+  /// {@macro act_dart_utility.ListUtility.interleave}
   ///
-  /// ```dart
-  /// listEquals(
-  ///     [1, 2, 3].interleave(0),
-  ///     [1, 0, 2, 0, 3],
-  /// );
-  /// ```
-  List<T> interleave(T interleave) => ListUtility.interleave(this, interleave);
+  /// {@macro act_dart_utility.ListUtility.interleaveWithBuilder.addElements}
+  List<T> interleave(T interleave,
+          {bool addLeft = false, bool addRight = false}) =>
+      ListUtility.interleave(this, interleave,
+          addLeft: addLeft, addRight: addRight);
 
-  /// Return a list copy with built interleaves inserted between each item.
+  /// {@macro act_dart_utility.ListUtility.interleaveWithBuilder}
   ///
-  /// ```dart
-  /// listEquals(
-  ///     [1, 2, 3].interleave(() => 0),
-  ///     [1, 0, 2, 0, 3],
-  /// );
-  /// ```
-  List<T> interleaveWithBuilder(T Function() interleaveBuilder) =>
-      ListUtility.interleaveWithBuilder(this, interleaveBuilder);
+  /// {@macro act_dart_utility.ListUtility.interleaveWithBuilder.addElements}
+  List<T> interleaveWithBuilder(T Function() interleaveBuilder,
+          {bool addLeft = false, bool addRight = false}) =>
+      ListUtility.interleaveWithBuilder(this, interleaveBuilder,
+          addLeft: addLeft, addRight: addRight);
 
   /// Returns a new list containing the elements between [start] and [end]. The [end] is not
   /// included.
@@ -57,7 +53,8 @@ extension ActListExtension<T> on List<T> {
   /// - If [start] overflows the list length, an empty list will be returned
   /// - If [end] is null or overflow the list length, the list length will be used.
   /// - If [end] is negative or before [start], an empty list will be returned.
-  List<T> safeSublist(int start, [int? end]) => ListUtility.safeSublist(this, start, end);
+  List<T> safeSublist(int start, [int? end]) =>
+      ListUtility.safeSublist(this, start, end);
 
   /// Returns a new list containing the elements which begins at [start] and with the given
   /// [length].
@@ -84,14 +81,16 @@ extension ActListExtension<T> on List<T> {
       );
 
   /// {@macro act_dart_utility.ListUtility.moveElement}
-  void moveElement(int currentIdx, int targetedIdx) => ListUtility.moveElement<T>(
+  void moveElement(int currentIdx, int targetedIdx) =>
+      ListUtility.moveElement<T>(
         this,
         currentIdx,
         targetedIdx,
       );
 
   /// {@macro act_dart_utility.ListUtility.addOrReplace}
-  List<T> appendOrReplace(List<T> listToAdd, [int? start]) => ListUtility.appendOrReplace(
+  List<T> appendOrReplace(List<T> listToAdd, [int? start]) =>
+      ListUtility.appendOrReplace(
         this,
         listToAdd,
         start,

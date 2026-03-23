@@ -15,27 +15,17 @@ class RuntimeCallocRegister extends Equatable {
   /// Class constructor
   RuntimeCallocRegister() : _pointers = [];
 
-  /// Allocate memory for a given type [T] using the provided [callocAllocator] function.
-  /// The allocated pointer is stored in the register for later cleanup.
-  /// Returns the allocated pointer.
+  /// Add a pointer allocated with calloc to the register, so it can be freed later.
   ///
-  /// To call like this:
+  /// It returns the same pointer for convenience, so you can use it inline with your allocations,
+  /// e.g.:
   ///
   /// ```dart
-  /// final pointer = register.allocate(calloc<YourType>);
+  /// final pointer = register.add(calloc<YourType>());
   /// // or with count:
-  /// final pointer = register.allocate(calloc<YourType>, count);
+  /// final pointer = register.add(calloc<YourType>(count));
   /// ```
-  Pointer<T> allocate<T extends NativeType>(
-    Pointer<T> Function([int count]) callocAllocator, [
-    int? count,
-  ]) {
-    final Pointer<T> pointer;
-    if (count != null) {
-      pointer = callocAllocator(count);
-    } else {
-      pointer = callocAllocator();
-    }
+  Pointer<T> add<T extends NativeType>(Pointer<T> pointer) {
     _pointers.add(pointer);
     return pointer;
   }
