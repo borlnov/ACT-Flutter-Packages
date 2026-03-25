@@ -10,7 +10,6 @@ SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 - [Table of contents](#table-of-contents)
 - [Presentation](#presentation)
-- [Targetted flutter / Dart SDK](#targetted-flutter--dart-sdk)
 - [mono\_repo](#mono_repo)
 - [Packages list](#packages-list)
 - [How to use the packages in your project](#how-to-use-the-packages-in-your-project)
@@ -19,14 +18,6 @@ SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 ## Presentation
 
 Shared flutter packages for all the Flutter projects.
-
-## Targetted flutter / Dart SDK
-
-For compatibility with various projects, packages requiring a minimal Flutter/Dart SDK version
-currently targets:
-
-- a Flutter SDK no more recent than 3.35.3
-- that is a Dart SDK no more recent than 3.9.2
 
 ## mono_repo
 
