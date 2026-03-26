@@ -8,6 +8,9 @@ import 'package:act_dart_utility/src/utilities/iterable_utility.dart';
 
 /// Helpful class to manage lists
 sealed class ListUtility {
+  /// This value is used when a method returns an index but the value is not found in the list.
+  static const int defaultIndexOfValueNotFound = -1;
+
   /// {@template act_dart_utility.ListUtility.copy}
   /// Return a copy of [list]
   ///
@@ -249,6 +252,40 @@ sealed class ListUtility {
 
     tmpList.addAll(listToAdd);
     return tmpList;
+  }
+
+  /// {@template act_dart_utility.ListUtility.indexWhereOrNull}
+  /// Returns the index of the first element in [list] that satisfies the given [test], or null if
+  /// no such element is found.
+  ///
+  /// This calls the List.indexWhere method of the list and returns null if the result is equal to
+  /// [defaultIndexOfValueNotFound].
+  /// {@endtemplate}
+  static int? indexWhereOrNull<T>(List<T> list, bool Function(T element) test,
+      {int start = 0}) {
+    final indexFound = list.indexWhere(test, start);
+    if (indexFound == defaultIndexOfValueNotFound) {
+      return null;
+    }
+
+    return indexFound;
+  }
+
+  /// {@template act_dart_utility.ListUtility.indexWhereOrDefault}
+  /// Returns the index of the first element in [list] that satisfies the given [test], or a default
+  /// value if no such element is found.
+  ///
+  /// This calls the List.indexWhere method of the list and returns [defaultValue] if the result is
+  /// equal to [defaultIndexOfValueNotFound].
+  /// {@endtemplate}
+  static int indexWhereOrDefault<T>(List<T> list, bool Function(T element) test,
+      {int start = 0, int defaultValue = defaultIndexOfValueNotFound}) {
+    final indexFound = list.indexWhere(test, start);
+    if (indexFound == defaultIndexOfValueNotFound) {
+      return defaultValue;
+    }
+
+    return indexFound;
   }
 
   /// {@template act_dart_utility.ListUtility.indexesWhere}
