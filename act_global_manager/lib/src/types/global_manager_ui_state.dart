@@ -9,7 +9,7 @@ import 'package:act_global_manager/src/types/global_manager_state.dart';
 enum GlobalManagerUiState with MixinExtendsEnum {
   /// The first widget has been built and the managers have called the
   /// AbsWithLifeCycleAndUi.initAfterView method
-  initForWidget(idxToInsertInSharedEnum: 3);
+  initForWidget(idxToInsertInSharedEnum: 4);
 
   /// {@macro MixinExtendsEnum.idxToInsertInSharedEnum}
   @override

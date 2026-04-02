@@ -10,6 +10,9 @@ enum GlobalManagerState {
   /// The global manager is created but not all the managers are ready yet
   created,
 
+  /// The global manager is initializing the managers
+  startInit,
+
   /// All the managers are ready
   allReady;
 }

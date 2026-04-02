@@ -14,7 +14,6 @@ import 'package:act_enable_service_utility/act_enable_service_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_permissions_manager/act_permissions_manager.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 /// Builder for creating the BleManager

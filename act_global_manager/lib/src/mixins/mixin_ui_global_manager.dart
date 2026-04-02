@@ -35,7 +35,8 @@ mixin MixinUiGlobalManager on AbsGlobalManager {
   /// The [initInFirstView] method is used to init what need to be init with
   /// managers and the MaterialApp context
   ///
-  /// The method has to be called in the MaterialApp builder
+  /// The method has to be called in the MaterialApp builder and has to be called after
+  /// [initLifeCycle] is finished.
   ///
   /// The method returns false if it has already been initialized or
   /// true if it's the first call

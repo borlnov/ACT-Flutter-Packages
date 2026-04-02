@@ -152,7 +152,7 @@ class LocalesManager extends AbsWithLifeCycleAndUi {
     await _initWantedLocale();
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initAfterView}
+  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterView}
   @override
   Future<void> initAfterView(BuildContext context) async {
     await super.initAfterView(context);
