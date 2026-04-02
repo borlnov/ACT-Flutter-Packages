@@ -69,13 +69,6 @@ abstract class AbstractConfigManager extends AbsWithLifeCycle {
     await configs.initLifeCycle();
   }
 
-  /// Called after the first view is built
-  @override
-  Future<void> initAfterView(BuildContext context) async {
-    await super.initAfterView(context);
-    await ConfigSingleton.instance.initLifeCycle();
-  }
-
   /// Called when the manager is disposed
   @override
   Future<void> disposeLifeCycle() async {

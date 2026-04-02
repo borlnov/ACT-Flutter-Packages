@@ -43,7 +43,7 @@ class AbstractRouterBuilder<M extends AbstractRouterManager> extends AbsManagerB
 
 /// The [AbstractRouterManager] simplifies [GoRouter]
 /// It's recommended to use this class as a singleton with a global manager
-abstract class AbstractRouterManager<T extends MixinRoute> extends AbsWithLifeCycle {
+abstract class AbstractRouterManager<T extends MixinRoute> extends AbsWithLifeCycleAndUi {
   /// The logs category linked to the router manager
   static const _logsCategory = "router";
 
@@ -84,11 +84,11 @@ abstract class AbstractRouterManager<T extends MixinRoute> extends AbsWithLifeCy
     _logsHelper = LogsHelper(logsManager: appLogger(), logsCategory: _logsCategory);
   }
 
-  /// {@template act_router_manager.AbstractRouterManager.initAfterManagersAndBeforeViews}
-  /// This method is called after all the managers are initialized but before the first view is
-  /// built.
-  /// {@endtemplate}
+  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterManagersAndBeforeViews}
+  @override
   Future<void> initAfterManagersAndBeforeViews() async {
+    await super.initAfterManagersAndBeforeViews();
+
     // RoutesHelper build
     final helper = await createRoutesHelper(_logsHelper);
 

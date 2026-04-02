@@ -109,16 +109,6 @@ abstract class AbsHttpClientManager<T extends AbsHttpClientLogin?> extends AbsWi
     }
   }
 
-  /// Called to initialize the manager after the view is loaded
-  @override
-  Future<void> initAfterView(BuildContext context) async {
-    await super.initAfterView(context);
-
-    // In that case, the context will stay the same
-    // ignore: use_build_context_synchronously
-    await _serverRequester.initAfterView(context);
-  }
-
   /// {@template act_http_client_manager.AbsServerReqManager.executeRequest}
   /// This method requests the third server and manages the login (if it exists and if it's
   /// necessary).

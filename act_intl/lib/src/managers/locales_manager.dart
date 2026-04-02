@@ -39,7 +39,7 @@ class LocalesManagerBuilder<P extends MixinLocaleProperties>
 ///
 /// If you want to use this manager to update the wanted locale, you have to use the [wantedLocale]
 /// getter with the locale property of the MaterialApp widget.
-class LocalesManager extends AbsWithLifeCycle {
+class LocalesManager extends AbsWithLifeCycleAndUi {
   /// This is the category used for logging
   static const _logsCategory = "locales";
 

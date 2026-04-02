@@ -66,22 +66,6 @@ class BleGattService extends AbsWithLifeCycle {
     await _characteristicService.initLifeCycle();
   }
 
-  /// Called when the views system is initialized
-  @override
-  Future<void> initAfterView(BuildContext context) async {
-    await super.initAfterView(context);
-
-    // In that case, the build context can be accessed through async method
-    // ignore: use_build_context_synchronously
-    await _connectService.initAfterView(context);
-    // In that case, the build context can be accessed through async method
-    // ignore: use_build_context_synchronously
-    await _findDeviceService.initAfterView(context);
-    // In that case, the build context can be accessed through async method
-    // ignore: use_build_context_synchronously
-    await _characteristicService.initAfterView(context);
-  }
-
   /// {@macro act_ble_manager.BleGattConnectService.connect}
   Future<bool> connect(
     BleDevice device, {

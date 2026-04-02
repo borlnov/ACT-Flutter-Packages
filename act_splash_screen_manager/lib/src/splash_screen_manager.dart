@@ -20,7 +20,7 @@ class SplashScreenBuilder extends AbsManagerBuilder<SplashScreenManager> {
 ///
 /// This manager keeps the splash screen until the first view is built. Therefore, it covers the
 /// managers initialization.
-class SplashScreenManager extends AbsWithLifeCycle {
+class SplashScreenManager extends AbsWithLifeCycleAndUi {
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
