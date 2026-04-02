@@ -82,11 +82,11 @@ abstract class AbsGlobalManager extends AbsWithLifeCycle {
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
 
+    _globalManagerStates = getGlobalManagerStates();
+
     if (!tryAdvanceToState(GlobalManagerState.startInit)) {
       return;
     }
-
-    _globalManagerStates = getGlobalManagerStates();
 
     await registerManagers();
 
@@ -100,7 +100,8 @@ abstract class AbsGlobalManager extends AbsWithLifeCycle {
   }
 
   /// {@template act_global_manager.AbsGlobalManager.registerManagers}
-  /// The [registerManagers] function is called at class constructor to register the managers
+  /// The [registerManagers] function is called in the [initLifeCycle] method and is used to
+  /// register the app managers.
   /// {@endtemplate}
   @protected
   Future<void> registerManagers();
