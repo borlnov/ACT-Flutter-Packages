@@ -24,8 +24,8 @@ class StatusWithExtraInfo<Status extends MixinResultStatus> extends Equatable {
 
   /// True if the status indicates an error
   ///
-  /// The overall status of the request is only defined by the [status] value
-  bool get isError => !status.isSuccess;
+  /// This is the opposite of [isSuccess]
+  bool get isError => !isSuccess;
 
   /// The request can be retried if the status says so
   bool get canBeRetried => status.canBeRetried;
