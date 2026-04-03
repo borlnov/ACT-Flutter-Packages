@@ -80,18 +80,6 @@ abstract class AbsAmplifyManager extends AbsWithLifeCycle {
     }
   }
 
-  /// Called to initialize some service after the first view is built
-  @override
-  Future<void> initAfterView(BuildContext context) async {
-    await super.initAfterView(context);
-
-    for (final service in _services) {
-      // In that case, the build context can be accessed through async method
-      // ignore: use_build_context_synchronously
-      await service.initAfterView(context);
-    }
-  }
-
   /// Iterate on the amplify services to update, if needed, the amplify configuration object
   Future<String?> _manageAmplifyConfigUpdate(AmplifyManagerConfig managerConfig) async {
     if (managerConfig.amplifyServices.isEmpty) {

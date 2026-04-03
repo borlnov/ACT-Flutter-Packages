@@ -5,4 +5,6 @@
 
 library;
 
-export 'src/global_manager.dart';
+export 'src/mixins/mixin_ui_global_manager.dart';
+export 'src/services/abs_global_manager.dart';
+export 'src/services/abs_ui_global_manager.dart';

@@ -26,7 +26,7 @@ abstract class AbstractConsentBuilder<T extends AbstractConsentManager>
 }
 
 /// Abstract class to store consent services and manage them in an application.
-abstract class AbstractConsentManager<E extends Enum> extends AbsWithLifeCycle {
+abstract class AbstractConsentManager<E extends Enum> extends AbsWithLifeCycleAndUi {
   /// Class logger category
   static const String _consentManagerLogCategory = 'consent';
 
@@ -65,7 +65,7 @@ abstract class AbstractConsentManager<E extends Enum> extends AbsWithLifeCycle {
         globalGetIt().get<LocalesManager>().currentLocaleStream.listen(_onCurrentLocaleUpdate));
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initAfterView}
+  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterView}
   @override
   Future<void> initAfterView(BuildContext context) async {
     await super.initAfterView(context);

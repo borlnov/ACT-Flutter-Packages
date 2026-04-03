@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/src/abs_with_life_cycle.dart';
+import 'package:act_abstract_manager/src/services/abs_with_life_cycle.dart';
 import 'package:flutter/foundation.dart' show mustCallSuper;
 
 /// Typedef for a manager factory

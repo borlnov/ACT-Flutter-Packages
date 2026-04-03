@@ -63,17 +63,6 @@ abstract class AbsFirebaseManager extends AbsWithLifeCycle {
     }
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initAfterView}
-  @override
-  Future<void> initAfterView(BuildContext context) async {
-    await super.initAfterView(context);
-    for (final service in _firebaseServices) {
-      // In that case, the build context can be accessed through async method
-      // ignore: use_build_context_synchronously
-      await service.initAfterView(context);
-    }
-  }
-
   /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
