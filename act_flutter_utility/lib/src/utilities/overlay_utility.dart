@@ -19,7 +19,7 @@ typedef BuildWidgetToOverlay = Widget Function(
 );
 
 /// This class is helpful to display an overlay above the current page view
-class OverlayUtil {
+class OverlayUtility {
   /// This methods allows to display a widget above the current view
   ///
   /// [widgetFactory] allows to give a factory for creating an overlay widget
