@@ -4,39 +4,39 @@
 
 /// This class is used to represent an interval of a string, with a start index and an end index.
 /// It also contains a key that can be used to link the interval to a specific word or part of the
-/// string
+/// string.
 class StringInterval {
-  /// This is the linked key to the interval
+  /// This is the linked key to the interval.
   ///
   /// This can be null if the interval is not linked to any key, for example if the interval is for
-  /// characters that aren't pointed by any key
+  /// characters that aren't pointed by any key.
   final String? key;
 
-  /// This is the start index of the text interval
+  /// This is the start index of the text interval.
   int startIdx;
 
-  /// This is the end index of the text interval
+  /// This is the end index of the text interval.
   int endIdx;
 
-  /// Default class constructor with a given length
+  /// Default class constructor with a given length.
   StringInterval({
     required this.key,
     required this.startIdx,
     required int length,
   }) : endIdx = (startIdx + (length - 1));
 
-  /// Class constructor with the end index
+  /// Class constructor with the end index.
   StringInterval.withEndIdx({
     required this.key,
     required this.startIdx,
     required this.endIdx,
   });
 
-  /// Compare the [index] with the interval
+  /// Compare the [index] with the interval.
   ///
-  /// If the [index] is in the interval returns 0
-  /// If the [index] is under the interval returns -1
-  /// If the [index] is above the interval returns 1
+  /// If the [index] is in the interval returns 0.
+  /// If the [index] is under the interval returns -1.
+  /// If the [index] is above the interval returns 1.
   int placeInRelationToInterval(int index) {
     if (index < startIdx) {
       return -1;
@@ -49,8 +49,8 @@ class StringInterval {
     return 0;
   }
 
-  /// Get the characters managed by the interval in the [str] given
+  /// Get the characters managed by the interval in the [str] given.
   ///
-  /// Be careful to give to this method the same [str] as the one you build the  interval with
+  /// Be careful to give to this method the same [str] as the one you build the interval with.
   String getIntervalString(String str) => str.substring(startIdx, endIdx + 1);
 }

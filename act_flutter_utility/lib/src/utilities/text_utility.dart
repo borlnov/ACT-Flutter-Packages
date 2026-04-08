@@ -22,7 +22,7 @@ class TextUtility {
   }) =>
       highlightTextMultipleWithConfig(
           text: text,
-          keys: {wordToHighlight},
+          keys: [wordToHighlight],
           mainTextConfig: TextSpanConfig(style: mainTextStyle),
           highLightTextConfigs: (highLightTextStyle != null)
               ? {
@@ -42,7 +42,7 @@ class TextUtility {
   }) =>
       highlightTextMultipleWithConfig(
           text: text,
-          keys: {wordToHighlight},
+          keys: [wordToHighlight],
           mainTextConfig: mainTextConfig,
           highLightTextConfigs: (highLightTextConfig != null)
               ? {
@@ -62,7 +62,7 @@ class TextUtility {
   }) =>
       highlightTextMultipleWithConfig(
         text: text,
-        keys: {wordToReplace},
+        keys: [wordToReplace],
         mainTextConfig: TextSpanConfig(style: mainTextStyle),
         replaceTextsWithWidgets: {
           wordToReplace: widgetToReplace,
@@ -80,7 +80,7 @@ class TextUtility {
   }) =>
       highlightTextMultipleWithConfig(
         text: text,
-        keys: {wordToReplace},
+        keys: [wordToReplace],
         mainTextConfig: mainTextConfig,
         replaceTextsWithWidgets: {
           wordToReplace: widgetToReplace,
@@ -93,18 +93,18 @@ class TextUtility {
   /// [mainTextStyle] is applied to all text and [highLightTextStyles] are only applied (above
   /// [mainTextStyle]) to the given words to highlight
   ///
-  /// The style are applied in the same order of the set [keys] given. Therefore if you
+  /// The style are applied in the same order of the list [keys] given. Therefore if you
   /// want to highlight a part of a word, ex: "at" in a highlighted word, ex: "what", you have to
-  /// set the highlight part after the word in the [keys] set, ex: ["what", "at"]
+  /// set the highlight part after the word in the [keys] list, ex: ["what", "at"]
   ///
   /// The [replaceTextsWithWidgets] allows to replace some part of the text with a widget, the key
   /// of the map is the part of the text to replace and the value is the widget to put instead of
   /// this part of the text. The replacement is done before the styling, so if a part of the text is
   /// replaced by a widget, it won't be styled. The keys of the [replaceTextsWithWidgets] map must
-  /// be in the [keys] set to be replaced by a widget.
+  /// be in the [keys] list to be replaced by a widget.
   static TextSpan highlightTextMultiple({
     required String text,
-    required Set<String> keys,
+    required List<String> keys,
     TextStyle? mainTextStyle,
     Map<String, TextStyle> highLightTextStyles = const {},
     Map<String, Widget> replaceTextsWithWidgets = const {},
@@ -136,7 +136,7 @@ class TextUtility {
   }) =>
       highlightTextMultipleWithConfig(
         text: text,
-        keys: replaceTextsWithWidgets.keys.toSet(),
+        keys: replaceTextsWithWidgets.keys.toList(),
         mainTextConfig: TextSpanConfig(style: mainTextStyle),
         replaceTextsWithWidgets: replaceTextsWithWidgets,
       );
@@ -147,18 +147,18 @@ class TextUtility {
   /// [mainTextConfig] is used with the text and [highLightTextConfigs] are only used (above
   /// [mainTextConfig]) with the given words to highlight
   ///
-  /// The style are applied in the same order of the set [keys] given. Therefore if you want to
+  /// The style are applied in the same order of the list [keys] given. Therefore if you want to
   /// highlight a part of a word, ex: "at" in a highlighted word, ex: "what", you have to set the
-  /// highlight part after the word in the [keys] set, ex: ["what", "at"]
+  /// highlight part after the word in the [keys] list, ex: ["what", "at"]
   ///
   /// The [replaceTextsWithWidgets] allows to replace some part of the text with a widget, the key
   /// of the map is the part of the text to replace and the value is the widget to put instead of
   /// this part of the text. The replacement is done before the styling, so if a part of the text is
   /// replaced by a widget, it won't be styled. The keys of the [replaceTextsWithWidgets] map must
-  /// be in the [keys] set to be replaced by a widget.
+  /// be in the [keys] list to be replaced by a widget.
   static TextSpan highlightTextMultipleWithConfig({
     required String text,
-    required Set<String> keys,
+    required List<String> keys,
     TextSpanConfig? mainTextConfig,
     Map<String, TextSpanConfig> highLightTextConfigs = const {},
     Map<String, Widget> replaceTextsWithWidgets = const {},
@@ -204,7 +204,7 @@ class TextUtility {
   }) =>
       highlightTextMultipleWithConfig(
         text: text,
-        keys: replaceTextsWithWidgets.keys.toSet(),
+        keys: replaceTextsWithWidgets.keys.toList(),
         mainTextConfig: mainTextConfig,
         replaceTextsWithWidgets: replaceTextsWithWidgets,
       );

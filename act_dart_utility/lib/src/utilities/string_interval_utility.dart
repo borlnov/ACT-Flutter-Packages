@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 import 'package:act_dart_utility/src/models/string_interval.dart';
+import 'package:act_dart_utility/src/utilities/list_utility.dart';
 
 /// This class is used to manage string intervals
 sealed class StringIntervalUtility {
@@ -13,7 +14,7 @@ sealed class StringIntervalUtility {
   /// the list of transformed intervals in order to merge them into a single element.
   static FinalElement actOnInterval<FinalElement, SubElement>(
     String text,
-    Set<String> keys,
+    List<String> keys,
     SubElement Function(StringInterval interval) transform,
     FinalElement Function(List<SubElement> elements) merge,
   ) {
@@ -37,8 +38,15 @@ sealed class StringIntervalUtility {
   /// [ cum, ber, some ]
   ///
   /// Empty key is ignored, otherwise it would create too much intervals.
-  static List<StringInterval> getIntervals(String text, Set<String> keys) =>
-      flatIntervals(text, keys, findIntervals(text, keys));
+  ///
+  /// If a key is duplicated, it will be only processed once (the first occurrence in the list will
+  /// be processed, the others will be ignored).
+  static List<StringInterval> getIntervals(String text, List<String> keys) {
+    var filteredKeys = keys.where((key) => key.isNotEmpty).toList();
+    filteredKeys = ListUtility.distinct(filteredKeys);
+
+    return flatIntervals(text, filteredKeys, findIntervals(text, filteredKeys));
+  }
 
   /// This methods finds all the string intervals thanks to the keys given
   ///
@@ -49,13 +57,14 @@ sealed class StringIntervalUtility {
   /// Empty key is ignored, otherwise it would create too much intervals.
   static Map<String, List<StringInterval>> findIntervals(
     String text,
-    Set<String> keys,
+    List<String> keys,
   ) {
     final textIntervals = <String, List<StringInterval>>{};
 
     for (final key in keys) {
-      if (key.isEmpty) {
+      if (key.isEmpty || textIntervals.containsKey(key)) {
         // We don't want to find empty key, it would create too much intervals
+        // We also want to avoid to process the same key several times
         continue;
       }
 
@@ -90,7 +99,7 @@ sealed class StringIntervalUtility {
   /// After the call of this method, every character is in one and only one interval
   static List<StringInterval> flatIntervals(
     String text,
-    Set<String> keys,
+    List<String> keys,
     Map<String, List<StringInterval>> intervalsToFlat,
   ) {
     final flattenTextIntervals = <StringInterval>[];
