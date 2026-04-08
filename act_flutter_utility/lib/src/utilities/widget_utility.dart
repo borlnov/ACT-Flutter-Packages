@@ -7,7 +7,7 @@
 import 'package:flutter/widgets.dart';
 
 /// Contains useful methods to work with widgets
-class WidgetUtils {
+class WidgetUtility {
   /// Add an '*' to the label, if needed
   static String formatInputLabelText({
     required String? labelText,

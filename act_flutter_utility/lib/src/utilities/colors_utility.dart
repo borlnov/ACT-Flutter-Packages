@@ -8,7 +8,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Helper class which contains Color utility methods
-class ColorsUtil {
+class ColorsUtility {
   static const int _thresholdRgb = 0xFF;
 
   /// This method allows to lighting colors.
