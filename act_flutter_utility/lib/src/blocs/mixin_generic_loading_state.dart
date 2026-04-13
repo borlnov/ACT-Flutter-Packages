@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 import 'package:act_flutter_utility/act_flutter_utility.dart';
+import 'package:flutter/foundation.dart';
 
 /// A mixin for [BlocStateForMixin] that need to manage generic loading states.
 ///
@@ -13,6 +14,14 @@ mixin MixinGenericLoadingState<S extends BlocStateForMixin<S>> on BlocStateForMi
   /// True when at least one element of the view is loading.
   /// {@endtemplate}
   bool get loading;
+
+  /// {@template act_flutter_utility.MixinGenericLoadingState.interactionsDisabled}
+  /// Whether the interactions should be disabled in the page.
+  ///
+  /// The interactions are disabled if, at least, the page is [loading].
+  /// {@endtemplate}
+  @mustCallSuper
+  bool get interactionsDisabled => loading;
 
   /// {@template act_flutter_utility.MixinGenericLoadingState.anErrorOccurred}
   /// True when an error occurred in one loading.
