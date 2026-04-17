@@ -10,20 +10,18 @@
 /// {@endtemplate}
 class ValueKeeper<T> {
   /// The value to keep
-  T? _value;
+  T _value;
 
   /// {@template act_dart_utility.ValueKeeper.value.getter}
   /// Getter to the value to keep
   /// {@endtemplate}
-  // Even if in this class the getter and setter aren't necessary we keep them for the derived class
-  // ignore: unnecessary_getters_setters
-  T? get value => _value;
+  T get value => _value;
 
   /// {@template act_dart_utility.ValueKeeper.value.setter}
   /// Setter of the value to keep
   /// {@endtemplate}
-  set value(T? newValue) => _value = newValue;
+  set value(T newValue) => _value = newValue;
 
   /// Class constructor
-  ValueKeeper({T? value}) : _value = value;
+  ValueKeeper({required T value}) : _value = value;
 }

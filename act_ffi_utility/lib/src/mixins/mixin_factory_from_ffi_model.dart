@@ -4,9 +4,9 @@
 
 import 'package:equatable/equatable.dart';
 
-/// Abstract factory for converting between FFI models and Dart models.
-abstract class AbsRuntimeModelFactory<M extends Equatable, FfiModel> {
-  /// {@template act_ffi_utility.AbsRuntimeModelFactory.fromFfi}
+/// Mixin for converting FFI models to Dart models.
+mixin MixinFactoryFromFfiModel<M extends Equatable, FfiModel> {
+  /// {@template act_ffi_utility.MixinFactoryFromFfiModel.fromFfi}
   /// Convert an FFI model to a Dart model.
   /// {@endtemplate}
   M? fromFfi(FfiModel? ffiModel);

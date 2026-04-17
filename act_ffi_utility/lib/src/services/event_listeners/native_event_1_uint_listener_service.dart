@@ -6,7 +6,7 @@ import 'dart:async';
 import 'dart:ffi' as ffi;
 
 import 'package:act_dart_utility/act_dart_utility.dart';
-import 'package:act_ffi_utility/src/services/abs_native_event_listener_service.dart';
+import 'package:act_ffi_utility/src/services/event_listeners/abs_native_event_listener_service.dart';
 import 'package:act_ffi_utility/src/utilities/runtime_protect_cmd.dart';
 import 'package:ffi/ffi.dart';
 
@@ -28,7 +28,7 @@ class NativeEvent1UintListenerService<Result extends MixinResultStatus, ParsedOb
   /// from the native callback into a [ParsedObject].
   ///
   /// It should return null if the parameters cannot be parsed into a valid object.
-  ParsedObject? Function(int firstParam) parseParamToObject;
+  ParsedObject? Function(int param) parseParamToObject;
 
   /// Class constructor
   NativeEvent1UintListenerService({
