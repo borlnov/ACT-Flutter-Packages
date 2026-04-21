@@ -35,9 +35,11 @@ abstract class AbsNativeEventListenerService<
   /// Stream controller for the parsed objects received from the native callback.
   final StreamController<ParsedObject> _streamController;
 
-  /// The callback used to register the native callback in the C library. It should be provided by
-  /// the subclass. See [getRegisterCallback].
-  late final RegisterCallback<Result, Callback> _registerNativeCallback;
+  /// The callback used to register the native callback in the C library.
+  ///
+  /// It is provided by the subclass through the `registerNativeCallback` constructor parameter and
+  /// stored in [_registerNativeCallback].
+  final RegisterCallback<Result, Callback> _registerNativeCallback;
 
   /// The current value of the parsed object received from the native callback.
   ParsedObject? _currentValue;
@@ -142,7 +144,7 @@ abstract class AbsNativeEventListenerService<
   @override
   Future<void> disposeLifeCycle() async {
     // Unregister the native callback
-    _registerNativeCallback(ffi.nullptr);
+    _registerNativeCallback(ffi.nullptr.cast<ffi.NativeFunction<Callback>>());
 
     _nativeCallable?.close();
     _nativeCallable = null;

@@ -4,8 +4,8 @@
 
 library;
 
-export 'src/mixins/mixin_factory_to_ffi_model.dart';
 export 'src/mixins/mixin_factory_from_ffi_model.dart';
+export 'src/mixins/mixin_factory_to_ffi_model.dart';
 export 'src/models/runtime_calloc_register.dart';
 export 'src/services/event_listeners/abs_native_event_listener_service.dart';
 export 'src/services/event_listeners/native_event_1_uint_listener_service.dart';

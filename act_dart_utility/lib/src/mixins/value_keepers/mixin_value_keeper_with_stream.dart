@@ -5,10 +5,9 @@
 import 'dart:async' show StreamController;
 
 import 'package:act_dart_utility/src/mixins/value_keepers/mixin_disposable_value_keeper.dart';
-import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 
 /// {@template act_dart_utility.MixinValueKeeperWithStream}
-/// Adds a stream to a [ValueKeeper] to notify the listeners when the value changes
+/// Adds a stream to a ValueKeeper to notify the listeners when the value changes
 ///
 /// Because it adds a stream, it also adds a [dispose] method to close the stream controller when
 /// it's no longer needed. Therefore, you should call the [dispose] method when you no longer need

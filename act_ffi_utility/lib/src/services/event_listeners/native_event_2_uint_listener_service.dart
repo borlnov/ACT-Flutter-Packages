@@ -11,7 +11,7 @@ import 'package:act_ffi_utility/src/utilities/runtime_protect_cmd.dart';
 import 'package:ffi/ffi.dart';
 
 /// Callback signature for a native event that provides two unsigned int parameters.
-typedef _Native2UintCallback =
+typedef Native2UintCallback =
     ffi.Void Function(ffi.UnsignedInt firstParam, ffi.UnsignedInt secondParam);
 
 /// Service for listening to native events that provide two unsigned int parameters.
@@ -19,7 +19,7 @@ typedef _Native2UintCallback =
 /// This service extends [AbsNativeEventListenerService] and provides a way to parse the two
 /// unsigned int parameters into a Dart object of type [ParsedObject].
 class NativeEvent2UintListenerService<Result extends MixinResultStatus, ParsedObject>
-    extends AbsNativeEventListenerService<Result, _Native2UintCallback, ParsedObject> {
+    extends AbsNativeEventListenerService<Result, Native2UintCallback, ParsedObject> {
   /// This is the function that will be called to get the current value of the object from the
   /// native library. It should return a [Result] indicating success or failure, and fill the
   /// provided pointers with the two unsigned int parameters that will be parsed into a
@@ -47,8 +47,8 @@ class NativeEvent2UintListenerService<Result extends MixinResultStatus, ParsedOb
 
   /// {@macro act_ffi_utility.AbsNativeEventListenerService.getNativeCallback}
   @override
-  ffi.NativeCallable<_Native2UintCallback> getNativeCallback() =>
-      ffi.NativeCallable<_Native2UintCallback>.listener(_onNativeEvent);
+  ffi.NativeCallable<Native2UintCallback> getNativeCallback() =>
+      ffi.NativeCallable<Native2UintCallback>.listener(_onNativeEvent);
 
   /// {@macro act_ffi_utility.AbsNativeEventListenerService.getValueGetter}
   @override

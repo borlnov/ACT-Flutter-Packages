@@ -13,7 +13,7 @@ import 'package:flutter/widgets.dart';
 /// {@endtemplate}
 mixin MixinValueKeeperOnStreamUpdate<T, Listened> on MixinDisposableValueKeeper<T> {
   /// This stream subscription is used to listen to the listened stream, and update the value keeper value
-  StreamSubscription<Listened>? _listenedStreamSubscription = null;
+  StreamSubscription<Listened>? _listenedStreamSubscription;
 
   /// {@template act_dart_utility.MixinValueKeeperOnStreamUpdate.parserCallback}
   /// This callback is called when the listened stream emits a new value, to parse it and update
@@ -32,6 +32,7 @@ mixin MixinValueKeeperOnStreamUpdate<T, Listened> on MixinDisposableValueKeeper<
     required Stream<Listened> listenedStream,
     FutureOr<Listened?> Function()? initListenedValueGetter,
   }) async {
+    await _listenedStreamSubscription?.cancel();
     _listenedStreamSubscription = listenedStream.listen(onStreamUpdate);
 
     final initListenedValue = await initListenedValueGetter?.call();

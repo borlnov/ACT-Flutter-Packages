@@ -15,11 +15,15 @@ class ValueKeeper<T> {
   /// {@template act_dart_utility.ValueKeeper.value.getter}
   /// Getter to the value to keep
   /// {@endtemplate}
+  // We want to keep the getter to be able to override it in derived classes
+  // ignore: unnecessary_getters_setters
   T get value => _value;
 
   /// {@template act_dart_utility.ValueKeeper.value.setter}
   /// Setter of the value to keep
   /// {@endtemplate}
+  // We want to keep the setter to be able to override it in derived classes
+  // ignore: unnecessary_getters_setters
   set value(T newValue) => _value = newValue;
 
   /// Class constructor
