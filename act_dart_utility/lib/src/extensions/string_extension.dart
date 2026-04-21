@@ -13,8 +13,8 @@ extension ActCommonFormsStringChecks on String {
   /// {@macro act_dart_utility.StringUtility.isValidEmail}
   bool get isValidEmail => StringUtility.isValidEmail(this);
 
-  /// {@macro act_dart_utility.StringUtility.toFirstLetterCapital}
-  String toFirstLetterCapital() => StringUtility.toFirstLetterCapital(string: this);
+  /// {@macro act_dart_utility.StringUtility.toCapitalized}
+  String toCapitalized() => StringUtility.toCapitalized(string: this);
 
   /// {@macro act_dart_utility.StringUtility.toTitleCase}
   String toTitleCase() => StringUtility.toTitleCase(string: this);

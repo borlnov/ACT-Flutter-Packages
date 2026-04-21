@@ -43,16 +43,16 @@ sealed class StringUtility {
   static String formatMacAddress({required String macAddress}) =>
       macAddress.split(macAddressSeparator).map((e) => e.padLeft(2, '0')).join(macAddressSeparator);
 
-  /// {@template act_dart_utility.StringUtility.toFirstLetterCapital}
-  /// Format String with first letter capital
+  /// {@template act_dart_utility.StringUtility.toCapitalized}
+  /// Format String with first letter capital and the rest in lowercase
   ///
   /// For instance:
   ///
   /// - "hello world" will be formatted to "Hello world"
   /// - "HELLO WORLD" will be formatted to "Hello world"
   /// {@endtemplate}
-  static String toFirstLetterCapital({required String string}) =>
-      string.isNotEmpty ? string[0].toUpperCase() + string.substring(1) : "";
+  static String toCapitalized({required String string}) =>
+      string.isNotEmpty ? string[0].toUpperCase() + string.substring(1).toLowerCase() : "";
 
   /// {@template act_dart_utility.StringUtility.toTitleCase}
   /// Format String with first letter capital for each word
@@ -63,7 +63,7 @@ sealed class StringUtility {
   /// - "HELLO WORLD" will be formatted to "Hello World"
   /// {@endtemplate}
   static String toTitleCase({required String string}) =>
-      string.split(" ").map((word) => toFirstLetterCapital(string: word)).join(" ");
+      string.split(" ").map((word) => toCapitalized(string: word)).join(" ");
 
   /// {@template act_dart_utility.StringUtility.isValidEmail}
   /// Check if given string represents a valid email address
