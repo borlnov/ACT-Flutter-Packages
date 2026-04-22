@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_dart_utility/src/models/result_with_required_value.dart';
-import 'package:act_dart_utility/src/models/status_with_extra_info.dart';
+import 'package:act_dart_utility/src/models/results/result_with_required_value.dart';
+import 'package:act_dart_utility/src/models/statuses/status_with_extra_info.dart';
 import 'package:act_dart_utility/src/types/bool_result_status.dart';
 
 /// This class is a [ResultWithRequiredValue] with a [BoolResultStatus]

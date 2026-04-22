@@ -3,8 +3,8 @@
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 import 'package:act_dart_utility/src/mixins/mixin_result_status.dart';
-import 'package:act_dart_utility/src/models/result_with_status.dart';
-import 'package:act_dart_utility/src/models/status_with_extra_info.dart';
+import 'package:act_dart_utility/src/models/results/result_with_status.dart';
+import 'package:act_dart_utility/src/models/statuses/status_with_extra_info.dart';
 
 /// This class is similar to [ResultWithStatus] but the value is
 /// not supposed to be null. Therefore the request is a success only if the

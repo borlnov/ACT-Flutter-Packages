@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_dart_utility/src/models/value_keeper.dart';
+import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 
 /// {@macro act_dart_utility.ValueKeeper}
 ///
 /// This class also save the information if the value has been explicitly initialized, or not
-class ValueKeeperWithInitInfo<T> extends ValueKeeper<T> {
+class ValueKeeperWithInitInfo<T> extends ValueKeeper<T?> {
   /// This is true if the value has been explicitly initialized at least once
   bool _hasBeenInitialized;
 
@@ -27,7 +27,9 @@ class ValueKeeperWithInitInfo<T> extends ValueKeeper<T> {
   /// Create a ValueKeeperWithInitInfo with no initial value
   ///
   /// Therefore, [hasBeenInitialized] will return false if the [value] setter is not used
-  ValueKeeperWithInitInfo.noInit() : _hasBeenInitialized = false;
+  ValueKeeperWithInitInfo.noInit()
+      : _hasBeenInitialized = false,
+        super(value: null);
 
   /// Create a ValueKeeperWithInitInfo with an initial value
   ///

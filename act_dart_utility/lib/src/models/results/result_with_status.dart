@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 import 'package:act_dart_utility/src/mixins/mixin_result_status.dart';
-import 'package:act_dart_utility/src/models/status_with_extra_info.dart';
+import 'package:act_dart_utility/src/models/statuses/status_with_extra_info.dart';
 
 /// This class provides a way to represent the result of a request with a status
 /// and the actual value of the request. Here the value can be null therefore
