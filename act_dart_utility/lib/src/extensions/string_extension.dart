@@ -10,10 +10,14 @@ import 'package:act_dart_utility/src/utilities/string_utility.dart';
 
 /// This [String] extension adds [StringUtility] methods to the [String] class.
 extension ActCommonFormsStringChecks on String {
-  /// Does string represents a valid email address
-  ///
-  /// See [StringUtility.emailAddressRegexp] for acceptance criteria
+  /// {@macro act_dart_utility.StringUtility.isValidEmail}
   bool get isValidEmail => StringUtility.isValidEmail(this);
+
+  /// {@macro act_dart_utility.StringUtility.toCapitalized}
+  String toCapitalized() => StringUtility.toCapitalized(string: this);
+
+  /// {@macro act_dart_utility.StringUtility.toTitleCase}
+  String toTitleCase() => StringUtility.toTitleCase(string: this);
 
   /// {@macro act_dart_utility.StringUtility.splitWithoutEmpty}
   List<String> splitWithoutEmpty(Pattern pattern) => StringUtility.splitWithoutEmpty(this, pattern);

@@ -43,13 +43,33 @@ sealed class StringUtility {
   static String formatMacAddress({required String macAddress}) =>
       macAddress.split(macAddressSeparator).map((e) => e.padLeft(2, '0')).join(macAddressSeparator);
 
-  /// Format String with first letter capital
-  static String firstLetterCapital({required String string}) =>
-      string.isNotEmpty ? string[0].toUpperCase() + string.substring(1) : "";
+  /// {@template act_dart_utility.StringUtility.toCapitalized}
+  /// Format String with first letter capital and the rest in lowercase
+  ///
+  /// For instance:
+  ///
+  /// - "hello world" will be formatted to "Hello world"
+  /// - "HELLO WORLD" will be formatted to "Hello world"
+  /// {@endtemplate}
+  static String toCapitalized({required String string}) =>
+      string.isNotEmpty ? string[0].toUpperCase() + string.substring(1).toLowerCase() : "";
 
+  /// {@template act_dart_utility.StringUtility.toTitleCase}
+  /// Format String with first letter capital for each word
+  ///
+  /// For instance:
+  ///
+  /// - "hello world" will be formatted to "Hello World"
+  /// - "HELLO WORLD" will be formatted to "Hello World"
+  /// {@endtemplate}
+  static String toTitleCase({required String string}) =>
+      string.split(" ").map((word) => toCapitalized(string: word)).join(" ");
+
+  /// {@template act_dart_utility.StringUtility.isValidEmail}
   /// Check if given string represents a valid email address
   ///
   /// See [emailAddressRegexp] for acceptance criteria
+  /// {@endtemplate}
   static bool isValidEmail(String string) => emailAddressRegexp.hasMatch(string);
 
   /// Check if given string represents a valid ipv4 address
