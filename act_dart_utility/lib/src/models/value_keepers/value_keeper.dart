@@ -29,7 +29,7 @@ typedef ValueKeeperWithNullInit<T> = BaseValueKeeper<T, T?>;
 /// Note that this class is not designed to be used directly, prefer to use linked typedefs, or to
 /// create your own typedef which respect cast expectation between S and T.
 /// {@endtemplate}
-class BaseValueKeeper<S, T> {
+class BaseValueKeeper<S extends T, T> {
   /// The value to keep
   T _value;
 

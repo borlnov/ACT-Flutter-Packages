@@ -14,7 +14,8 @@ import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 /// controller when it's no longer needed. Therefore, you should call the [disposeLifeCycle] method
 /// when you no longer need the model to avoid memory leaks.
 /// {@endtemplate}
-mixin MixinValueKeeperWithStream<S, T> on BaseValueKeeper<S, T>, MixinWithLifeCycleDispose {
+mixin MixinValueKeeperWithStream<S extends T, T>
+    on BaseValueKeeper<S, T>, MixinWithLifeCycleDispose {
   /// This stream controller is used to notify the listeners when the value changes
   final StreamController<S> _valueStreamController = StreamController<S>.broadcast();
 

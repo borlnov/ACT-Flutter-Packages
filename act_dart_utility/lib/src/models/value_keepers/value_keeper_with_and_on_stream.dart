@@ -18,7 +18,7 @@ import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 ///
 /// {@macro act_dart_utility.MixinValueKeeperWithStream}
 ///
-/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+/// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
 typedef ValueKeeperWithAndOnStream<T, Listened> = BaseValueKeeperWithAndOnStream<T, T, Listened>;
 
 /// {@macro act_dart_utility.ValueIsNullableButNotSetter}
@@ -29,7 +29,7 @@ typedef ValueKeeperWithAndOnStream<T, Listened> = BaseValueKeeperWithAndOnStream
 ///
 /// {@macro act_dart_utility.MixinValueKeeperWithStream}
 ///
-/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+/// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
 typedef ValueKeeperWithAndOnStreamAndNullInit<T, Listened> =
     BaseValueKeeperWithAndOnStream<T, T?, Listened>;
 
@@ -39,10 +39,10 @@ typedef ValueKeeperWithAndOnStreamAndNullInit<T, Listened> =
 ///
 /// {@macro act_dart_utility.MixinValueKeeperWithStream}
 ///
-/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+/// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
 ///
 /// {@macro act_dart_utility.SMustBeCastableToT}
-class BaseValueKeeperWithAndOnStream<S, T, Listened> extends BaseValueKeeper<S, T>
+class BaseValueKeeperWithAndOnStream<S extends T, T, Listened> extends BaseValueKeeper<S, T>
     with
         MixinWithLifeCycleDispose,
         MixinValueKeeperWithStream<S, T>,

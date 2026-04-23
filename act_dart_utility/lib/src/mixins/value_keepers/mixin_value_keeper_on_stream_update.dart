@@ -12,7 +12,7 @@ import 'package:flutter/widgets.dart';
 /// This mixin should be used on ValueKeepers that need to update their value based on a listened
 /// stream.
 /// {@endtemplate}
-mixin MixinValueKeeperOnStreamUpdate<S, T, Listened>
+mixin MixinValueKeeperOnStreamUpdate<S extends T, T, Listened>
     on BaseValueKeeper<S, T>, MixinWithLifeCycleDispose {
   /// This stream subscription is used to listen to the listened stream, and update the value keeper value
   StreamSubscription<Listened>? _listenedStreamSubscription;

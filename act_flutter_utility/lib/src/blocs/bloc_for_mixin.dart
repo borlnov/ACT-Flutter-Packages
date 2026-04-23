@@ -27,8 +27,8 @@ abstract class BlocForMixin<S extends BlocStateForMixin<S>> extends Bloc<BlocEve
   /// This is the close method of the bloc.
   /// {@endtemplate}
   ///
-  /// We override the close method to call the dispose method of the state, which can be used to
-  /// dispose resources used by the state.
+  /// We override the close method to call the disposeLifeCycle method of the state, which can be
+  /// used to dispose resources used by the state.
   @override
   Future<void> close() async {
     await state.disposeLifeCycle();
