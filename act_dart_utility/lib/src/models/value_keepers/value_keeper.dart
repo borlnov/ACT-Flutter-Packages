@@ -45,12 +45,12 @@ class BaseValueKeeper<S extends T, T> {
   /// {@endtemplate}
   // We want to keep the setter to be able to override it in derived classes
   // ignore: unnecessary_getters_setters
-  set value(S newValue) => _value = newValue as T;
+  set value(S newValue) => _value = newValue;
 
   /// Class constructor
   BaseValueKeeper({required T value}) : _value = value;
 
   /// Class constructor to create a ValueKeeper from a setter value, which can be useful when you
   /// want to use the ValueKeeper in a setter callback
-  BaseValueKeeper.fromSetterValue({required S value}) : _value = value as T;
+  BaseValueKeeper.fromSetterValue({required S value}) : _value = value;
 }
