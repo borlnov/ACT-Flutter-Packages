@@ -40,7 +40,7 @@ class HttpLoggingManager extends AbsWithLifeCycle {
   /// Default constructor
   HttpLoggingManager() : _logStreamController = StreamController<HttpLog>.broadcast();
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -67,7 +67,7 @@ class HttpLoggingManager extends AbsWithLifeCycle {
     _logStreamController.add(tmpLog);
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await _logStreamController.close();

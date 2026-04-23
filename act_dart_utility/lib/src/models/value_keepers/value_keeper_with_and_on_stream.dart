@@ -5,10 +5,33 @@
 
 import 'dart:async' show FutureOr, unawaited;
 
-import 'package:act_dart_utility/src/mixins/value_keepers/mixin_disposable_value_keeper.dart';
+import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_dart_utility/src/mixins/value_keepers/mixin_value_keeper_on_stream_update.dart';
 import 'package:act_dart_utility/src/mixins/value_keepers/mixin_value_keeper_with_stream.dart';
 import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
+
+/// {@macro act_dart_utility.ValueTypeIsEqualToSetterValue}
+///
+/// {@macro act_dart_utility.ValueKeeper}
+///
+/// {@macro act_dart_utility.MixinValueKeeperOnStreamUpdate}
+///
+/// {@macro act_dart_utility.MixinValueKeeperWithStream}
+///
+/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+typedef ValueKeeperWithAndOnStream<T, Listened> = BaseValueKeeperWithAndOnStream<T, T, Listened>;
+
+/// {@macro act_dart_utility.ValueIsNullableButNotSetter}
+///
+/// {@macro act_dart_utility.ValueKeeper}
+///
+/// {@macro act_dart_utility.MixinValueKeeperOnStreamUpdate}
+///
+/// {@macro act_dart_utility.MixinValueKeeperWithStream}
+///
+/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+typedef ValueKeeperWithAndOnStreamAndNullInit<T, Listened> =
+    BaseValueKeeperWithAndOnStream<T, T?, Listened>;
 
 /// {@macro act_dart_utility.ValueKeeper}
 ///
@@ -17,33 +40,43 @@ import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 /// {@macro act_dart_utility.MixinValueKeeperWithStream}
 ///
 /// {@macro act_dart_utility.MixinDisposableValueKeeper}
-class ValueKeeperWithAndOnStream<T, Listened> extends ValueKeeper<T>
+///
+/// {@macro act_dart_utility.SMustBeCastableToT}
+class BaseValueKeeperWithAndOnStream<S, T, Listened> extends BaseValueKeeper<S, T>
     with
-        MixinDisposableValueKeeper<T>,
-        MixinValueKeeperWithStream<T>,
-        MixinValueKeeperOnStreamUpdate<T, Listened> {
+        MixinWithLifeCycleDispose,
+        MixinValueKeeperWithStream<S, T>,
+        MixinValueKeeperOnStreamUpdate<S, T, Listened> {
   /// {@macro act_dart_utility.MixinValueKeeperOnStreamUpdate.parserCallback}
   @override
-  final T? Function(Listened listenedValue) parserCallback;
+  final S? Function(Listened listenedValue) parserCallback;
+
+  /// {@macro act_dart_utility.MixinValueKeeperWithStream.emitUnchangedValue}
+  @override
+  final bool emitUnchangedValue;
 
   /// Class constructor
-  ValueKeeperWithAndOnStream({
+  BaseValueKeeperWithAndOnStream({
     required T initialValue,
     required this.parserCallback,
     required Stream<Listened> listenedStream,
+    this.emitUnchangedValue = false,
     FutureOr<Listened?> Function()? initListenedValueGetter,
   }) : super(value: initialValue) {
-    unawaited(initStreamListener(
-      listenedStream: listenedStream,
-      initListenedValueGetter: initListenedValueGetter,
-    ));
+    unawaited(
+      initStreamListener(
+        listenedStream: listenedStream,
+        initListenedValueGetter: initListenedValueGetter,
+      ),
+    );
   }
 
   /// Alternative constructor to initialize the stream listener later. In this case, you should call
   /// the [initStreamListener] method to initialize the stream listener when the listened stream is
   /// available.
-  ValueKeeperWithAndOnStream.lateInitStream({
+  BaseValueKeeperWithAndOnStream.lateInitStream({
     required T initialValue,
     required this.parserCallback,
+    this.emitUnchangedValue = false,
   }) : super(value: initialValue);
 }

@@ -385,7 +385,7 @@ abstract class AbsOAuth2ProviderService extends AbsWithLifeCycle with MixinAuthS
     return true;
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await _authStatusCtrl.close();

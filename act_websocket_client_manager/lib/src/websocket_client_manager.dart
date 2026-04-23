@@ -21,14 +21,10 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 ///
 /// This is useful if you want to create another [WebsocketClientManager] to contact another WebSocket
 /// server.
-abstract class AbstractWebsocketClientDerivedBuilder<
-  T extends WebsocketClientManager
->
+abstract class AbstractWebsocketClientDerivedBuilder<T extends WebsocketClientManager>
     extends AbsManagerBuilder<T> {
   /// Class constructor with the class construction
-  const AbstractWebsocketClientDerivedBuilder({
-    required ClassFactory<T> factory,
-  }) : super(factory);
+  const AbstractWebsocketClientDerivedBuilder({required ClassFactory<T> factory}) : super(factory);
 
   /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
   @override
@@ -41,10 +37,7 @@ class WebsocketClientDerivedBuilder<C extends MixinWebsocketClientConfig>
     extends AbstractWebsocketClientDerivedBuilder<WebsocketClientManager> {
   /// Class constructor
   WebsocketClientDerivedBuilder()
-    : super(
-        factory: () =>
-            WebsocketClientManager(configGetter: globalGetIt().get<C>),
-      );
+    : super(factory: () => WebsocketClientManager(configGetter: globalGetIt().get<C>));
 }
 
 /// This is the WebSocket manager
@@ -94,8 +87,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
   Stream<dynamic> get receivedMsgsStream => _receivedMsgCtrl.stream;
 
   /// This is the stream of the connection status
-  Stream<WsConnectionStatus> get connectionStatusStream =>
-      _connectionStatusCtrl.stream;
+  Stream<WsConnectionStatus> get connectionStatusStream => _connectionStatusCtrl.stream;
 
   /// This is the WebSocket channel
   WebSocketChannel? _channel;
@@ -110,20 +102,15 @@ class WebsocketClientManager extends AbsWithLifeCycle {
        _connectionStatusCtrl = StreamController.broadcast(),
        _receivedMsgCtrl = StreamController.broadcast();
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
 
-    logsHelper = LogsHelper(
-      logsManager: appLogger(),
-      logsCategory: loggerCategory,
-    );
+    logsHelper = LogsHelper(logsManager: appLogger(), logsCategory: loggerCategory);
     _managerConfig = await getConfig(logsHelper: logsHelper);
 
-    await Future.wait(
-      _managerConfig.msgParsers.map((parser) => parser.initLifeCycle()),
-    );
+    await Future.wait(_managerConfig.msgParsers.map((parser) => parser.initLifeCycle()));
 
     if (_managerConfig.startWsAtManagerInit) {
       // We don't wait for the WebSocket connection success
@@ -134,11 +121,10 @@ class WebsocketClientManager extends AbsWithLifeCycle {
   /// {@macro act_websocket_client_manager.WebsocketClientManager.tryToConnect}
   ///
   /// If [enableAutoReconnect] is different of null, it will enable (or not) the auto reconnect
-  Future<bool> tryToConnect({bool? enableAutoReconnect}) =>
-      _connectionMutex.protect(() async {
-        await _manageAutoReconnect(enableAutoReconnect: enableAutoReconnect);
-        return _tryToConnectProcess();
-      });
+  Future<bool> tryToConnect({bool? enableAutoReconnect}) => _connectionMutex.protect(() async {
+    await _manageAutoReconnect(enableAutoReconnect: enableAutoReconnect);
+    return _tryToConnectProcess();
+  });
 
   /// {@template act_websocket_client_manager.WebsocketClientManager.sendMessage}
   /// Send message through the WebSocket.
@@ -172,22 +158,17 @@ class WebsocketClientManager extends AbsWithLifeCycle {
   /// Get the manager config, use value by default
   /// {@endtemplate}
   @protected
-  Future<WsClientManagerConfig> getConfig({
-    required LogsHelper logsHelper,
-  }) async => WsClientManagerConfig(
-    uri: _configGetter().websocketClientUrl.load(),
-    autoReconnectEnabled: _configGetter().websocketClientAutoRecoEnabled.load(),
-    autoReconnectInitDuration: _configGetter()
-        .websocketClientAutoRecoInitDurationInMs
-        .load(),
-    autoReconnectMaxDuration: _configGetter()
-        .websocketClientAutoRecoMaxDurationInMs
-        .load(),
-    startWsAtManagerInit: _startWsAtManagerInitDefaultValue,
-    msgParsers: const [],
-    protocols: const [],
-    logReceivedMsg: _configGetter().websocketClientLogReceivedMsg.load(),
-  );
+  Future<WsClientManagerConfig> getConfig({required LogsHelper logsHelper}) async =>
+      WsClientManagerConfig(
+        uri: _configGetter().websocketClientUrl.load(),
+        autoReconnectEnabled: _configGetter().websocketClientAutoRecoEnabled.load(),
+        autoReconnectInitDuration: _configGetter().websocketClientAutoRecoInitDurationInMs.load(),
+        autoReconnectMaxDuration: _configGetter().websocketClientAutoRecoMaxDurationInMs.load(),
+        startWsAtManagerInit: _startWsAtManagerInitDefaultValue,
+        msgParsers: const [],
+        protocols: const [],
+        logReceivedMsg: _configGetter().websocketClientLogReceivedMsg.load(),
+      );
 
   /// This is callback called when the auto reconnect is triggered
   Future<bool> _autoReconnectCallback() => _connectionMutex.protect(() async {
@@ -215,10 +196,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
     _setConnectionStatus(WsConnectionStatus.connecting);
 
     var anErrorOccurred = false;
-    Future<void> connectingErrorCallback(
-      Object error,
-      StackTrace stackTrace,
-    ) async {
+    Future<void> connectingErrorCallback(Object error, StackTrace stackTrace) async {
       if (_connectionStatus == WsConnectionStatus.connecting) {
         anErrorOccurred = true;
       }
@@ -239,9 +217,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
       );
       await _channel!.ready;
     } catch (error, stack) {
-      logsHelper.e(
-        "An error occurred when trying to connect to the WebSocket: $error",
-      );
+      logsHelper.e("An error occurred when trying to connect to the WebSocket: $error");
       await connectingErrorCallback(error, stack);
     }
 
@@ -264,9 +240,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
     }
 
     await Future.wait(
-      _managerConfig.msgParsers.map(
-        (parser) => parser.onRawMessageReceived(message),
-      ),
+      _managerConfig.msgParsers.map((parser) => parser.onRawMessageReceived(message)),
     );
     _receivedMsgCtrl.add(message);
   }
@@ -330,8 +304,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
   ///
   /// The call to this method will reset the [_autoRecoTimer].
   Future<void> _manageAutoReconnect({bool? enableAutoReconnect}) async {
-    final isAutoRecoEnabled =
-        enableAutoReconnect ?? _managerConfig.autoReconnectEnabled;
+    final isAutoRecoEnabled = enableAutoReconnect ?? _managerConfig.autoReconnectEnabled;
     if (isAutoRecoEnabled && _autoRecoTimer != null) {
       // Nothing more to do, except the reset of the timer
       _autoRecoTimer!.reset();
@@ -355,12 +328,10 @@ class WebsocketClientManager extends AbsWithLifeCycle {
     _autoRecoTimer = null;
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
-    await Future.wait(
-      _managerConfig.msgParsers.map((parser) => parser.disposeLifeCycle()),
-    );
+    await Future.wait(_managerConfig.msgParsers.map((parser) => parser.disposeLifeCycle()));
     await _receivedMsgCtrl.close();
     await _connectionStatusCtrl.close();
 

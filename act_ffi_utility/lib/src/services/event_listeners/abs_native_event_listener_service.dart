@@ -28,12 +28,10 @@ abstract class AbsNativeEventListenerService<
   Callback extends Function,
   ParsedObject
 >
-    extends AbsWithLifeCycle {
+    extends ValueKeeperWithStreamAndNullInit<ParsedObject>
+    with MixinWithLifeCycle {
   /// Logs helper for this service.
   final LogsHelper logsHelper;
-
-  /// Stream controller for the parsed objects received from the native callback.
-  final StreamController<ParsedObject> _streamController;
 
   /// The callback used to register the native callback in the C library.
   ///
@@ -41,43 +39,22 @@ abstract class AbsNativeEventListenerService<
   /// stored in [_registerNativeCallback].
   final RegisterCallback<Result, Callback> _registerNativeCallback;
 
-  /// The current value of the parsed object received from the native callback.
-  ParsedObject? _currentValue;
-
   /// The native callable registered with the C library.
   ffi.NativeCallable<Callback>? _nativeCallable;
-
-  /// A broadcast stream of parsed objects received from the native callback.
-  Stream<ParsedObject> get eventStream => _streamController.stream;
-
-  /// The current value of the parsed object received from the native callback. It can be null if
-  /// no event has been received yet.
-  ParsedObject? get currentValue => _currentValue;
-
-  /// Sets the current value of the parsed object and adds it to the stream.
-  @protected
-  set currentValue(ParsedObject value) {
-    if (value == _currentValue) {
-      // Nothing to do
-      return;
-    }
-
-    _currentValue = value;
-    _streamController.add(value);
-  }
 
   /// Class constructor
   AbsNativeEventListenerService({
     required String logsCategory,
     required RegisterCallback<Result, Callback> registerNativeCallback,
     LogsHelper? parentLogsHelper,
+    super.emitUnchangedValue = false,
   }) : logsHelper =
            parentLogsHelper?.createASubLogsHelper(logsCategory) ??
            LogsHelper(logsManager: globalGetIt().get<LoggerManager>(), logsCategory: logsCategory),
-       _streamController = StreamController<ParsedObject>.broadcast(),
-       _registerNativeCallback = registerNativeCallback;
+       _registerNativeCallback = registerNativeCallback,
+       super(value: null);
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -99,7 +76,7 @@ abstract class AbsNativeEventListenerService<
   /// {@template act_ffi_utility.AbsNativeEventListenerService.getNativeCallback}
   /// Get the native callback to register in the C library. This callback will be called from the C
   /// library when an event occurs. It should parse the event and update the current value using
-  /// the [currentValue] setter.
+  /// the [value] setter.
   /// {@endtemplate}
   @protected
   ffi.NativeCallable<Callback> getNativeCallback();
@@ -137,10 +114,10 @@ abstract class AbsNativeEventListenerService<
       return;
     }
 
-    currentValue = initValue;
+    value = initValue;
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     // Unregister the native callback
@@ -148,8 +125,6 @@ abstract class AbsNativeEventListenerService<
 
     _nativeCallable?.close();
     _nativeCallable = null;
-
-    await _streamController.close();
 
     return super.disposeLifeCycle();
   }

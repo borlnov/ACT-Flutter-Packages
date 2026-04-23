@@ -2,17 +2,41 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_dart_utility/src/mixins/value_keepers/mixin_disposable_value_keeper.dart';
+import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_dart_utility/src/mixins/value_keepers/mixin_value_keeper_with_stream.dart';
 import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
+
+/// {@macro act_dart_utility.ValueTypeIsEqualToSetterValue}
+///
+/// {@macro act_dart_utility.ValueKeeper}
+///
+/// {@macro act_dart_utility.MixinValueKeeperWithStream}
+///
+/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+typedef ValueKeeperWithStream<T> = BaseValueKeeperWithStream<T, T>;
+
+/// {@macro act_dart_utility.ValueIsNullableButNotSetter}
+///
+/// {@macro act_dart_utility.ValueKeeper}
+///
+/// {@macro act_dart_utility.MixinValueKeeperWithStream}
+///
+/// {@macro act_dart_utility.MixinDisposableValueKeeper}
+typedef ValueKeeperWithStreamAndNullInit<T> = BaseValueKeeperWithStream<T, T?>;
 
 /// {@macro act_dart_utility.ValueKeeper}
 ///
 /// {@macro act_dart_utility.MixinValueKeeperWithStream}
 ///
 /// {@macro act_dart_utility.MixinDisposableValueKeeper}
-class ValueKeeperWithStream<T> extends ValueKeeper<T>
-    with MixinDisposableValueKeeper<T>, MixinValueKeeperWithStream<T> {
+///
+/// {@macro act_dart_utility.SMustBeCastableToT}
+class BaseValueKeeperWithStream<S, T> extends BaseValueKeeper<S, T>
+    with MixinWithLifeCycleDispose, MixinValueKeeperWithStream<S, T> {
+  /// {@macro act_dart_utility.MixinValueKeeperWithStream.emitUnchangedValue}
+  @override
+  final bool emitUnchangedValue;
+
   /// Class constructor
-  ValueKeeperWithStream({required super.value});
+  BaseValueKeeperWithStream({required super.value, this.emitUnchangedValue = false});
 }

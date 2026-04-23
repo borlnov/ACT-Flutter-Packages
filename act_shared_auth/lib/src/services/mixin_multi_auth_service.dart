@@ -61,7 +61,7 @@ mixin MixinMultiAuthService<P extends Enum> on MixinAuthService, AbsWithLifeCycl
     return provider.authStatus;
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -418,7 +418,7 @@ mixin MixinMultiAuthService<P extends Enum> on MixinAuthService, AbsWithLifeCycl
     _serviceStatusCtrl.add(status);
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await Future.wait(_subs.map((sub) => sub.cancel()));

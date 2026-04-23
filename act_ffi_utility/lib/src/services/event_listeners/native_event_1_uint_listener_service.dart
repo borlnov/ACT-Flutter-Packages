@@ -32,10 +32,11 @@ class NativeEvent1UintListenerService<Result extends MixinResultStatus, ParsedOb
 
   /// Class constructor
   NativeEvent1UintListenerService({
-    required super.parentLogsHelper,
     required super.logsCategory,
     required super.registerNativeCallback,
     required this.parseParamToObject,
+    super.parentLogsHelper,
+    super.emitUnchangedValue,
     this.valueGetter,
   });
 
@@ -80,6 +81,6 @@ class NativeEvent1UintListenerService<Result extends MixinResultStatus, ParsedOb
       return;
     }
 
-    currentValue = parsedObject;
+    value = parsedObject;
   }
 }

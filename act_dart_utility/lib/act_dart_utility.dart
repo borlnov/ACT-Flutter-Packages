@@ -18,7 +18,6 @@ export 'src/mixins/mixin_result_status.dart';
 export 'src/mixins/mixin_string_value_type.dart';
 export 'src/mixins/mixin_unique_model.dart';
 export 'src/mixins/mixin_unique_value_type.dart';
-export 'src/mixins/value_keepers/mixin_disposable_value_keeper.dart';
 export 'src/mixins/value_keepers/mixin_value_keeper_on_stream_update.dart';
 export 'src/mixins/value_keepers/mixin_value_keeper_with_stream.dart';
 export 'src/models/num_boundaries.dart';

@@ -67,7 +67,7 @@ abstract class AbsAuthManager extends AbsWithLifeCycle {
   @protected
   Future<void> onAuthStatusUpdated(AuthStatus status) async {}
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await _authStatusSub.cancel();

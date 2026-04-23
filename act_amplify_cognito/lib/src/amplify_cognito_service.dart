@@ -65,7 +65,7 @@ class AmplifyCognitoService extends AbsAmplifyService with MixinAuthService {
         _cognitoStreamSubs = [],
         super();
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   /// {@macro act_amplify_core.AbsAmplifyService.initLifeCycle}
   @override
   Future<void> initLifeCycle({

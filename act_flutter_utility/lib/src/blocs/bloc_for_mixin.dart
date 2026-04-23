@@ -31,7 +31,7 @@ abstract class BlocForMixin<S extends BlocStateForMixin<S>> extends Bloc<BlocEve
   /// dispose resources used by the state.
   @override
   Future<void> close() async {
-    await state.dispose();
+    await state.disposeLifeCycle();
     return super.close();
   }
 }

@@ -38,7 +38,7 @@ abstract class AbsFirebaseManager extends AbsWithLifeCycle {
   @protected
   Future<FirebaseManagerConfig> getFirebaseConfig();
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -63,7 +63,7 @@ abstract class AbsFirebaseManager extends AbsWithLifeCycle {
     }
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     for (final service in _firebaseServices) {
