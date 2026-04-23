@@ -6,8 +6,8 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
-import 'package:act_life_cycle_manager/act_life_cycle_manager.dart';
+import 'package:act_app_life_cycle_manager/act_app_life_cycle_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_permissions_manager/src/element/permission_element.dart';
 import 'package:act_permissions_manager/src/element/permission_element_extension.dart';
@@ -17,7 +17,7 @@ import 'package:act_platform_manager/act_platform_manager.dart';
 import 'package:permission_handler/permission_handler.dart' as permission_handler;
 
 /// Builder for creating the PermissionsManager
-class PermissionsBuilder extends AbsManagerBuilder<PermissionsManager> {
+class PermissionsBuilder extends AbsLifeCycleFactory<PermissionsManager> {
   /// Class constructor with the class construction
   PermissionsBuilder() : super(PermissionsManager.new);
 
@@ -25,7 +25,7 @@ class PermissionsBuilder extends AbsManagerBuilder<PermissionsManager> {
   @override
   Iterable<Type> dependsOn() => [
         LoggerManager,
-        LifeCycleManager,
+        AppLifeCycleManager,
         PlatformManager,
       ];
 }

@@ -2,10 +2,10 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_http_client_manager/act_http_client_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_shared_auth/act_shared_auth.dart';
 import 'package:act_thingsboard_client/act_thingsboard_client.dart';
@@ -18,7 +18,7 @@ import 'package:thingsboard_client/thingsboard_client.dart';
 /// The [TbNoAuthServerReqManager] doesn't depend on [AbsAuthManager], it only passes the
 /// `storageService` to the created ThingsboardClient.
 class TbNoAuthServerReqBuilder<C extends MixinThingsboardConf, A extends AbsAuthManager>
-    extends AbsManagerBuilder<TbNoAuthServerReqManager> {
+    extends AbsLifeCycleFactory<TbNoAuthServerReqManager> {
   /// Class constructor
   TbNoAuthServerReqBuilder()
       : super(() => TbNoAuthServerReqManager(
@@ -26,7 +26,7 @@ class TbNoAuthServerReqBuilder<C extends MixinThingsboardConf, A extends AbsAuth
               confGetter: globalGetIt().get<C>,
             ));
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [C, LoggerManager];
 }

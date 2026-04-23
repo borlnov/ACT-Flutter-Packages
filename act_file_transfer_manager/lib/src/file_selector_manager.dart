@@ -4,18 +4,19 @@
 
 import 'dart:typed_data';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_dart_result/act_dart_result.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_file_transfer_manager/act_file_transfer_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:file_selector/file_selector.dart';
 
 /// Builder for the [FileSelectorManager]
-class FileSelectorBuilder extends AbsManagerBuilder<FileSelectorManager> {
+class FileSelectorBuilder extends AbsLifeCycleFactory<FileSelectorManager> {
   /// Class constructor
   const FileSelectorBuilder() : super(FileSelectorManager.new);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [];
 }

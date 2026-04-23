@@ -4,8 +4,8 @@
 
 import 'dart:io';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_remote_storage_manager/src/mixins/mixin_storage_config.dart';
 import 'package:act_remote_storage_manager/src/models/cache_storage_config.dart';
@@ -19,7 +19,7 @@ import 'package:flutter/material.dart';
 /// Abstract class for a storage manager builder. It specifies the other managers that the storage
 /// manager depends on.
 abstract class AbsRemoteStorageBuilder<T extends AbsRemoteStorageManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// Class constructor
   AbsRemoteStorageBuilder(super.factory);
 

@@ -4,7 +4,6 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_http_client_manager/src/constants/server_req_constants.dart'
     as server_req_constants;
@@ -14,6 +13,7 @@ import 'package:act_http_client_manager/src/models/server_urls.dart';
 import 'package:act_http_client_manager/src/types/request_status.dart';
 import 'package:act_http_client_manager/src/utilities/body_format_utility.dart';
 import 'package:act_http_client_manager/src/utilities/url_format_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:http/http.dart';
 

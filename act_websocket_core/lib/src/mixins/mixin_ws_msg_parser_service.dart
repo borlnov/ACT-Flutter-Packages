@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:flutter/foundation.dart';
 
 /// This is is the WebSocket message parser

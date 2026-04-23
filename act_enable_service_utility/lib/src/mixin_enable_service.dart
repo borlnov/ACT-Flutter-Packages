@@ -5,13 +5,13 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_app_life_cycle_manager/act_app_life_cycle_manager.dart';
 import 'package:act_contextual_views_manager/act_contextual_views_manager.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_enable_service_utility/src/enable_service_element.dart';
 import 'package:act_enable_service_utility/src/enable_service_view_context.dart';
 import 'package:act_global_manager/act_global_manager.dart';
-import 'package:act_life_cycle_manager/act_life_cycle_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:flutter/widgets.dart';
 
@@ -151,7 +151,7 @@ mixin MEnableService on AbsWithLifeCycle {
         valueGetter: valueGetter,
         statusEmitter: statusEmitter,
         doAction: () async {
-          await globalGetIt().get<LifeCycleManager>().waitForegroundApp(
+          await globalGetIt().get<AppLifeCycleManager>().waitForegroundApp(
             leaveTheApp: () async {
               await AppSettings.openAppSettings(type: settingsType);
               return true;

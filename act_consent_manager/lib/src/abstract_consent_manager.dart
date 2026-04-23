@@ -4,22 +4,22 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_consent_manager/act_consent_manager.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_intl/act_intl.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/material.dart';
 
 /// Abstract class which defines a builder for the consent manager specifying
 /// the other managers that it depends on.
 abstract class AbstractConsentBuilder<T extends AbstractConsentManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// Class constructor
   AbstractConsentBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   @mustCallSuper
   Iterable<Type> dependsOn() => [LoggerManager, LocalesManager];
@@ -48,7 +48,7 @@ abstract class AbstractConsentManager<E extends Enum> extends AbsWithLifeCycleAn
         _observers = [],
         _subscriptions = [];
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -65,7 +65,7 @@ abstract class AbstractConsentManager<E extends Enum> extends AbsWithLifeCycleAn
         globalGetIt().get<LocalesManager>().currentLocaleStream.listen(_onCurrentLocaleUpdate));
   }
 
-  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterView}
+  /// {@macro act_life_cycle.MixinUiLifeCycle.initAfterView}
   @override
   Future<void> initAfterView(BuildContext context) async {
     await super.initAfterView(context);
@@ -98,7 +98,7 @@ abstract class AbstractConsentManager<E extends Enum> extends AbsWithLifeCycleAn
     await Future.wait(_services.values.map((service) => service.resetLocalConsentInfo()));
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await Future.wait(_services.values.map((service) => service.disposeLifeCycle()));

@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/src/mixins/mixin_logger_config.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/foundation.dart';
@@ -14,7 +14,7 @@ import 'package:logger/logger.dart';
 typedef ActLogsErrorCallback = void Function(Object exception, StackTrace stackTrace);
 
 /// Builder for creating the LoggerManager
-class LoggerBuilder<C extends MixinLoggerConfig> extends AbsManagerBuilder<LoggerManager> {
+class LoggerBuilder<C extends MixinLoggerConfig> extends AbsLifeCycleFactory<LoggerManager> {
   /// A factory to create a manager instance
   const LoggerBuilder() : super(_LoggerManagerPriv<C>.new);
 

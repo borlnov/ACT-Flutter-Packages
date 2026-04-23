@@ -4,7 +4,6 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_config_manager/act_config_manager.dart';
 import 'package:act_config_manager/src/data/config_constants.dart' as config_constants;
 import 'package:act_config_manager/src/services/config_singleton.dart';
@@ -12,10 +11,12 @@ import 'package:act_config_manager/src/types/environment.dart';
 import 'package:act_config_manager/src/utilities/config_from_env_utility.dart';
 import 'package:act_config_manager/src/utilities/config_from_yaml_utility.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:flutter/widgets.dart';
 
 /// Builder for creating the ConfigManager
-abstract class AbstractConfigBuilder<T extends AbstractConfigManager> extends AbsManagerBuilder<T> {
+abstract class AbstractConfigBuilder<T extends AbstractConfigManager>
+    extends AbsLifeCycleFactory<T> {
   /// A factory to create a manager instance
   const AbstractConfigBuilder(super.factory);
 

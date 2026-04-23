@@ -2,13 +2,13 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_jwt_utilities/src/handlers/abstract_jwt_handler.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 
 /// The manager builder linked to the [JwtManager]
-class JwtBuilder extends AbsManagerBuilder<JwtManager> {
+class JwtBuilder extends AbsLifeCycleFactory<JwtManager> {
   /// Class constructor
   JwtBuilder() : super(JwtManager.new);
 

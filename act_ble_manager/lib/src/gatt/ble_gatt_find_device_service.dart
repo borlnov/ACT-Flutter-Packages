@@ -5,7 +5,6 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_ble_manager/src/ble_manager.dart';
 import 'package:act_ble_manager/src/data/constants.dart' as ble_constants;
 import 'package:act_ble_manager/src/gap/ble_gap_service.dart';
@@ -13,6 +12,7 @@ import 'package:act_ble_manager/src/models/ble_device.dart';
 import 'package:act_ble_manager/src/models/ble_scanned_device.dart';
 import 'package:act_ble_manager/src/types/ble_scan_update_type.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 /// Manages the finding of device

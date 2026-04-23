@@ -4,9 +4,9 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_global_manager/src/types/global_manager_ui_state.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:flutter/widgets.dart';
 
 /// This mixin is used to add methods to the global manager linked to the UI life cycle
@@ -22,7 +22,7 @@ mixin MixinUiGlobalManager on AbsGlobalManager {
   List<AbsWithLifeCycleAndUi> get registeredManagersWithUi =>
       registeredManagers.whereType<AbsWithLifeCycleAndUi>().toList(growable: false);
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

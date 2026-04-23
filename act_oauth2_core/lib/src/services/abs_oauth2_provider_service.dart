@@ -4,8 +4,8 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_oauth2_core/act_oauth2_core.dart';
 import 'package:act_shared_auth/act_shared_auth.dart';
@@ -385,7 +385,7 @@ abstract class AbsOAuth2ProviderService extends AbsWithLifeCycle with MixinAuthS
     return true;
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await _authStatusCtrl.close();

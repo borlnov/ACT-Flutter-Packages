@@ -5,10 +5,11 @@
 import 'dart:async';
 import 'dart:ffi' as ffi;
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
-import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_dart_result/act_dart_result.dart';
+import 'package:act_dart_value_keeper/act_dart_value_keeper.dart';
 import 'package:act_ffi_utility/src/utilities/runtime_protect_cmd.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/foundation.dart';
 
@@ -54,7 +55,7 @@ abstract class AbsNativeEventListenerService<
        _registerNativeCallback = registerNativeCallback,
        super(value: null);
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -117,7 +118,7 @@ abstract class AbsNativeEventListenerService<
     value = initValue;
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     // Unregister the native callback

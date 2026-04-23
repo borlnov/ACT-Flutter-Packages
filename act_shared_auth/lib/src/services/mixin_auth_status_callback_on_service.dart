@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_shared_auth/act_shared_auth.dart';
 
 /// {@macro act_shared_auth.MixinAuthStatusCallback.presentation}
@@ -11,7 +11,7 @@ import 'package:act_shared_auth/act_shared_auth.dart';
 /// [AbsWithLifeCycle].
 mixin MixinAuthStatusCallbackOnService<AuthManager extends AbsAuthManager>
     on AbsWithLifeCycle, MixinAuthStatusCallback<AuthManager> {
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -19,7 +19,7 @@ mixin MixinAuthStatusCallbackOnService<AuthManager extends AbsAuthManager>
     await initUpdate();
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await disposeUpdate();

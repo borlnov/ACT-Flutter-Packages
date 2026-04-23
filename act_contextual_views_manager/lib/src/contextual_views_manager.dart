@@ -3,11 +3,11 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_contextual_views_manager/src/abstract_view_builder.dart';
 import 'package:act_contextual_views_manager/src/models/abstract_view_context.dart';
 import 'package:act_contextual_views_manager/src/models/view_display_result.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_router_manager/act_router_manager.dart';
 
@@ -16,7 +16,7 @@ typedef _RouterManagerGetter = AbstractRouterManager Function();
 
 /// Builder linked to the contextual views manager
 class ContextualViewsBuilder<R extends AbstractRouterManager>
-    extends AbsManagerBuilder<ContextualViewsManager> {
+    extends AbsLifeCycleFactory<ContextualViewsManager> {
   /// Class constructor
   /// The method expects an [AbstractViewBuilder] to use with the manager
   ContextualViewsBuilder({
@@ -51,7 +51,7 @@ class ContextualViewsManager extends AbsWithLifeCycle {
   })  : _viewBuilder = viewBuilder,
         _routerManagerGetter = routerManagerGetter;
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -82,7 +82,7 @@ class ContextualViewsManager extends AbsWithLifeCycle {
         doAction: doAction,
       );
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     final futures = <Future>[

@@ -5,8 +5,8 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_permissions_manager/src/element/permission_element.dart';
 import 'package:act_permissions_manager/src/permissions_manager.dart';
 import 'package:act_permissions_manager/src/services_helper/permission_monitor_service.dart';
@@ -56,7 +56,7 @@ class NotKnownDependencyException implements Exception {
 
 /// This contains the dependencies needed by the [MPermissionsService] when using the mixin on
 /// AbstractManager
-mixin MPermissionsServiceBuilder<T extends AbsWithLifeCycle> on AbsManagerBuilder<T> {
+mixin MPermissionsServiceBuilder<T extends AbsWithLifeCycle> on AbsLifeCycleFactory<T> {
   @override
   Iterable<Type> dependsOn() => [PermissionsManager];
 }

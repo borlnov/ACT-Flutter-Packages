@@ -5,10 +5,10 @@
 
 import 'dart:async';
 
+import 'package:act_app_life_cycle_manager/act_app_life_cycle_manager.dart';
 import 'package:act_contextual_views_manager/act_contextual_views_manager.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
-import 'package:act_life_cycle_manager/act_life_cycle_manager.dart';
 import 'package:act_permissions_manager/src/element/permission_element.dart';
 import 'package:act_permissions_manager/src/handlers/permission_handler.dart';
 import 'package:act_permissions_manager/src/permissions_manager.dart';
@@ -283,7 +283,7 @@ class PermissionMonitorService {
         valueGetter: () async => _permissionHandler.currentStatus,
         statusEmitter: _permissionHandler.statusStream,
         doAction: () async {
-          await globalGetIt().get<LifeCycleManager>().waitForegroundApp(
+          await globalGetIt().get<AppLifeCycleManager>().waitForegroundApp(
                 leaveTheApp: openAppSettings,
               );
           return true;

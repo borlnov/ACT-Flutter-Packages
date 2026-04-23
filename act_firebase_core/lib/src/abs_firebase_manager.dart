@@ -2,22 +2,22 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_config_manager/act_config_manager.dart';
 import 'package:act_firebase_core/src/abs_firebase_service.dart';
 import 'package:act_firebase_core/src/models/firebase_manager_config.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
 
 /// Builder of the abstract firebase manager
 abstract class AbsFirebaseBuilder<T extends AbsFirebaseManager, C extends AbstractConfigManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// Class constructor
   AbsFirebaseBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager, C];
 }
@@ -38,7 +38,7 @@ abstract class AbsFirebaseManager extends AbsWithLifeCycle {
   @protected
   Future<FirebaseManagerConfig> getFirebaseConfig();
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -63,7 +63,7 @@ abstract class AbsFirebaseManager extends AbsWithLifeCycle {
     }
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     for (final service in _firebaseServices) {

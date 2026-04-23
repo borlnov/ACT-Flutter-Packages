@@ -4,9 +4,9 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
-import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_dart_timer/act_dart_timer.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_websocket_client_manager/src/mixins/mixin_websocket_client_config.dart';
 import 'package:act_websocket_client_manager/src/models/ws_client_manager_config.dart';
@@ -22,11 +22,11 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 /// This is useful if you want to create another [WebsocketClientManager] to contact another WebSocket
 /// server.
 abstract class AbstractWebsocketClientDerivedBuilder<T extends WebsocketClientManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// Class constructor with the class construction
   const AbstractWebsocketClientDerivedBuilder({required ClassFactory<T> factory}) : super(factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   @mustCallSuper
   Iterable<Type> dependsOn() => [LoggerManager];
@@ -102,7 +102,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
        _connectionStatusCtrl = StreamController.broadcast(),
        _receivedMsgCtrl = StreamController.broadcast();
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -328,7 +328,7 @@ class WebsocketClientManager extends AbsWithLifeCycle {
     _autoRecoTimer = null;
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await Future.wait(_managerConfig.msgParsers.map((parser) => parser.disposeLifeCycle()));

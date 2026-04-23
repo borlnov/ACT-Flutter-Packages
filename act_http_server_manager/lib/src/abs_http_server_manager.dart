@@ -4,7 +4,6 @@
 
 import 'dart:io';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_http_logging_manager/act_http_logging_manager.dart';
 import 'package:act_http_server_manager/src/models/http_request_log.dart';
@@ -13,6 +12,7 @@ import 'package:act_http_server_manager/src/services/abs_api_service.dart';
 import 'package:act_http_server_manager/src/services/handlers/abs_server_handler.dart';
 import 'package:act_http_server_manager/src/services/handlers/request_id_server_handler.dart';
 import 'package:act_http_server_manager/src/utilities/server_handler_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shelf/shelf.dart';
@@ -20,11 +20,11 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
 
 /// This is the builder of the [AbsHttpServerManager]
-abstract class AbsHttpServerBuilder<M extends AbsHttpServerManager> extends AbsManagerBuilder<M> {
+abstract class AbsHttpServerBuilder<M extends AbsHttpServerManager> extends AbsLifeCycleFactory<M> {
   /// Class constructor
   const AbsHttpServerBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager, HttpLoggingManager];
 }
@@ -56,7 +56,7 @@ abstract class AbsHttpServerManager extends AbsWithLifeCycle {
   /// Class constructor
   AbsHttpServerManager() : _apiServices = [], _globalHandlers = [];
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

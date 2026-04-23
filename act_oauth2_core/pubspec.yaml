@@ -3,9 +3,8 @@
 # SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 name: act_oauth2_core
-description:
-  This package contains the common elements to connect to OAuth 2.0 client from Identity
-  Providers.
+description: This package contains the common elements to connect to OAuth 2.0
+  client from Identity Providers.
 publish_to: none
 
 # This package supports all platforms listed below.
@@ -32,8 +31,8 @@ dependencies:
   mutex: ^3.1.0
 
   # Easily create managers
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
   act_dart_utility:
     path: ../act_dart_utility

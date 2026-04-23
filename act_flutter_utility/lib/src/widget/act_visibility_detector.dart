@@ -15,7 +15,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 /// - hidden because another view is pushed over this widget
 ///   (thanks to VisibilityDetector, a bit slow due to a 500-ms debouncer inside VisibilityDetector)
 /// - hidden because app is put inactive or paused
-///   (thanks to LifeCycleManager, fast)
+///   (thanks to AppLifeCycleManager, fast)
 /// - hidden because of a scroll event
 ///   (thanks to VisibilityDetector, a bit slow due to a 500-ms debouncer inside VisibilityDetector)
 ///

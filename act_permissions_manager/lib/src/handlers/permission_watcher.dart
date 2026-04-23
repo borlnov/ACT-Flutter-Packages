@@ -7,9 +7,9 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:act_app_life_cycle_manager/act_app_life_cycle_manager.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
-import 'package:act_life_cycle_manager/act_life_cycle_manager.dart';
 import 'package:act_permissions_manager/src/element/permission_element.dart';
 import 'package:act_permissions_manager/src/handlers/permission_handler.dart';
 import 'package:act_permissions_manager/src/permissions_manager.dart';
@@ -105,7 +105,7 @@ class PermissionWatcher extends SharedWatcher<PermissionHandler> {
   @override
   Future<void> atFirstHandler() async {
     _lifeCycleSub =
-        globalGetIt().get<LifeCycleManager>().lifeCycleStream.listen(_onLifeCycleStateUpdate);
+        globalGetIt().get<AppLifeCycleManager>().lifeCycleStream.listen(_onLifeCycleStateUpdate);
 
     return _checkPermissionAndSetStatus();
   }

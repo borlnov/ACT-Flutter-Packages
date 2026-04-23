@@ -5,8 +5,8 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_router_manager/src/abstract_routes_helper.dart';
 import 'package:act_router_manager/src/routes_helper_companion.dart';
@@ -28,13 +28,13 @@ typedef RouterRedirect<T extends MixinRoute> = Future<T?> Function(
     BuildContext context, T route, GoRouterState state);
 
 /// Builder for creating the AbstractGorouterManager
-class AbstractRouterBuilder<M extends AbstractRouterManager> extends AbsManagerBuilder<M> {
+class AbstractRouterBuilder<M extends AbstractRouterManager> extends AbsLifeCycleFactory<M> {
   /// Class constructor with the class construction
   const AbstractRouterBuilder({
     required ClassFactory<M> factory,
   }) : super(factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [
         LoggerManager,
@@ -84,7 +84,7 @@ abstract class AbstractRouterManager<T extends MixinRoute> extends AbsWithLifeCy
     _logsHelper = LogsHelper(logsManager: appLogger(), logsCategory: _logsCategory);
   }
 
-  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterManagersAndBeforeViews}
+  /// {@macro act_life_cycle.MixinUiLifeCycle.initAfterManagersAndBeforeViews}
   @override
   Future<void> initAfterManagersAndBeforeViews() async {
     await super.initAfterManagersAndBeforeViews();

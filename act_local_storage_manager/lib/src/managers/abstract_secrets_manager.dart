@@ -4,14 +4,14 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_local_storage_manager/act_local_storage_manager.dart';
 import 'package:act_local_storage_manager/src/services/secrets_singleton.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 
 /// Builder for creating the SecretsManager
 abstract class AbstractSecretsBuilder<P extends AbstractPropertiesManager,
-    E extends MixinStoresConf, T extends AbstractSecretsManager> extends AbsManagerBuilder<T> {
+    E extends MixinStoresConf, T extends AbstractSecretsManager> extends AbsLifeCycleFactory<T> {
   /// A factory to create a manager instance
   const AbstractSecretsBuilder(super.factory);
 
@@ -49,7 +49,7 @@ abstract class AbstractSecretsManager extends AbsWithLifeCycle {
     required this.confGetter,
   }) : super();
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

@@ -35,8 +35,8 @@ dependencies:
   path_provider: ^2.1.5
 
   # Contains the structure to create services and managers
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
   # This contains the amplify core library
   act_amplify_core:

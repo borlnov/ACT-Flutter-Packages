@@ -4,18 +4,18 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_intl/src/mixins/mixin_locale_properties.dart';
 import 'package:act_intl/src/observers/locales_observer_widget.dart';
 import 'package:act_intl/src/utilities/locale_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 /// This is the builder for the [LocalesManager].
 class LocalesManagerBuilder<P extends MixinLocaleProperties>
-    extends AbsManagerBuilder<LocalesManager> {
+    extends AbsLifeCycleFactory<LocalesManager> {
   /// Class constructor
   LocalesManagerBuilder({
     required List<Locale> Function() getSupportedLocales,
@@ -24,7 +24,7 @@ class LocalesManagerBuilder<P extends MixinLocaleProperties>
               propertiesGetter: globalGetIt().get<P>,
             ));
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager, P];
 }
@@ -142,7 +142,7 @@ class LocalesManager extends AbsWithLifeCycleAndUi {
         _getSupportedLocales = getSupportedLocales,
         _propertiesGetter = propertiesGetter;
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -152,7 +152,7 @@ class LocalesManager extends AbsWithLifeCycleAndUi {
     await _initWantedLocale();
   }
 
-  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterView}
+  /// {@macro act_life_cycle.MixinUiLifeCycle.initAfterView}
   @override
   Future<void> initAfterView(BuildContext context) async {
     await super.initAfterView(context);
@@ -220,7 +220,7 @@ class LocalesManager extends AbsWithLifeCycleAndUi {
     _wantedLocale = localeFound;
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await Future.wait([

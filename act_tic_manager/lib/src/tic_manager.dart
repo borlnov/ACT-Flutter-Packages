@@ -4,12 +4,12 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:rxdart/streams.dart';
 import 'package:rxdart/subjects.dart';
 
 /// Builder for creating the TicManager
-class TicBuilder extends AbsManagerBuilder<TicManager> {
+class TicBuilder extends AbsLifeCycleFactory<TicManager> {
   /// A factory to create a manager instance
   TicBuilder() : super(TicManager.new);
 

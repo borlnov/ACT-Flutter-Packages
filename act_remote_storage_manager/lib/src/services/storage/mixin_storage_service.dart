@@ -4,7 +4,7 @@
 
 import 'dart:io';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_remote_storage_manager/src/models/storage_page.dart';
 import 'package:act_remote_storage_manager/src/models/transfer_progress.dart';
 import 'package:act_remote_storage_manager/src/types/storage_request_result.dart';

@@ -3,12 +3,12 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_platform_manager/src/platforms_deps/act_platform.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 /// Builder for creating the PlatformManager
-class PlatformBuilder extends AbsManagerBuilder<PlatformManager> {
+class PlatformBuilder extends AbsLifeCycleFactory<PlatformManager> {
   /// Class constructor with the class construction
   PlatformBuilder() : super(PlatformManager.new);
 

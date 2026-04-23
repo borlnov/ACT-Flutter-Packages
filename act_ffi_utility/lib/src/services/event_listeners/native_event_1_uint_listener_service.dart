@@ -5,7 +5,7 @@
 import 'dart:async';
 import 'dart:ffi' as ffi;
 
-import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_dart_result/act_dart_result.dart';
 import 'package:act_ffi_utility/src/services/event_listeners/abs_native_event_listener_service.dart';
 import 'package:act_ffi_utility/src/utilities/runtime_protect_cmd.dart';
 import 'package:ffi/ffi.dart';
