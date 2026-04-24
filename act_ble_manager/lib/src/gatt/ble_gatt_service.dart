@@ -5,13 +5,13 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_ble_manager/src/ble_manager.dart';
 import 'package:act_ble_manager/src/gatt/ble_gatt_characteristic_service.dart';
 import 'package:act_ble_manager/src/gatt/ble_gatt_connect_service.dart';
 import 'package:act_ble_manager/src/gatt/ble_gatt_find_device_service.dart';
 import 'package:act_ble_manager/src/models/ble_device.dart';
 import 'package:act_ble_manager/src/types/characteristics_error.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:mutex/mutex.dart';

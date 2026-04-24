@@ -6,8 +6,8 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/src/types/global_manager_state.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
@@ -77,7 +77,7 @@ abstract class AbsGlobalManager extends AbsWithLifeCycle {
       : _currentState = GlobalManagerState.created,
         _registeredManagers = [];
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -119,7 +119,7 @@ abstract class AbsGlobalManager extends AbsWithLifeCycle {
   /// [_defaultLogger].
   /// {@endtemplate}
   @protected
-  void registerManagerAsync<T extends AbsWithLifeCycle>(AbsManagerBuilder<T> builder) {
+  void registerManagerAsync<T extends AbsWithLifeCycle>(AbsLifeCycleFactory<T> builder) {
     Future<T> asyncFactory() async {
       final manager = await builder.asyncFactory();
 

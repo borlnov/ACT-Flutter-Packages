@@ -6,14 +6,14 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_music_player_manager/src/music_sound.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 /// Builder for creating the MusicPlayerManager
-class MusicPlayerBuilder<T> extends AbsManagerBuilder<MusicPlayerManager> {
+class MusicPlayerBuilder<T> extends AbsLifeCycleFactory<MusicPlayerManager> {
   /// Class constructor with the class construction
   MusicPlayerBuilder({
     required String audioFilePrefix,

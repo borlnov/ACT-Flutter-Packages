@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_config_manager/src/data/config_constants.dart' as config_constants;
+import 'package:act_life_cycle/act_life_cycle.dart';
 
 /// This singleton is used to load and get the config variables.
 ///

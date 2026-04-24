@@ -4,17 +4,17 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_shared_auth/act_shared_auth.dart';
 import 'package:flutter/foundation.dart';
 
 /// Builder of the [AbsAuthManager] manager
-abstract class AbsAuthBuilder<T extends AbsAuthManager> extends AbsManagerBuilder<T> {
+abstract class AbsAuthBuilder<T extends AbsAuthManager> extends AbsLifeCycleFactory<T> {
   /// Class constructor
   const AbsAuthBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager];
 }
@@ -67,7 +67,7 @@ abstract class AbsAuthManager extends AbsWithLifeCycle {
   @protected
   Future<void> onAuthStatusUpdated(AuthStatus status) async {}
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await _authStatusSub.cancel();

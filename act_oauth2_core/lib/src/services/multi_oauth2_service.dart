@@ -22,7 +22,7 @@ class MultiOAuth2Service<P extends Enum> extends SimpleMultiAuthService<P> {
   MultiOAuth2Service({required super.providers, super.currentProvider})
     : super(logsCategory: _logsCategory);
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

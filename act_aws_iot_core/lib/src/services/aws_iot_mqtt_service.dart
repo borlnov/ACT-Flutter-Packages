@@ -10,6 +10,7 @@ import 'package:act_aws_iot_core/src/models/aws_iot_mqtt_config_model.dart';
 import 'package:act_aws_iot_core/src/services/abs_aws_iot_service.dart';
 import 'package:act_aws_iot_core/src/services/aws_iot_mqtt_subscription_service.dart';
 import 'package:act_aws_iot_core/src/types/aws_iot_mqtt_sub_event.dart';
+import 'package:act_dart_timer/act_dart_timer.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_internet_connectivity_manager/act_internet_connectivity_manager.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';

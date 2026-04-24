@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_dart_result/act_dart_result.dart';
 
 /// This enum represents the status of a consent load request
 enum ConsentLoadStatus with MixinResultStatus {

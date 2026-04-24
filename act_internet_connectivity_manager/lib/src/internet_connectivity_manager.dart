@@ -5,11 +5,12 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_dart_timer/act_dart_timer.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_internet_connectivity_manager/src/mixins/mixin_internet_test_config.dart';
 import 'package:act_internet_connectivity_manager/src/platform_deps/internet_test.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +25,7 @@ import 'package:flutter/foundation.dart';
 /// use the [MixinInternetTestConfig] mixin for the config manager.
 @protected
 abstract class AbstractInternetDerivedBuilder<T extends InternetConnectivityManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// Class constructor with the class construction
   const AbstractInternetDerivedBuilder({
     required ClassFactory<T> factory,

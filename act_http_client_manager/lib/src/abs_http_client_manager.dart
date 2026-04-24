@@ -4,7 +4,6 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_http_client_manager/src/abs_http_client_login.dart';
 import 'package:act_http_client_manager/src/models/request_param.dart';
@@ -16,16 +15,17 @@ import 'package:act_http_client_manager/src/types/login_fail_policy.dart';
 import 'package:act_http_client_manager/src/types/request_status.dart';
 import 'package:act_http_client_manager/src/utilities/url_format_utility.dart';
 import 'package:act_http_core/act_http_core.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 /// Builder of the [AbsHttpClientManager] manager
-abstract class AbsHttpClientBuilder<T extends AbsHttpClientManager> extends AbsManagerBuilder<T> {
+abstract class AbsHttpClientBuilder<T extends AbsHttpClientManager> extends AbsLifeCycleFactory<T> {
   /// Class constructor
   const AbsHttpClientBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager];
 }

@@ -28,8 +28,8 @@ dependencies:
   firebase_core: ^3.14.0
 
   # Contains default classes for managers
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
   act_config_manager:
     path: ../act_config_manager

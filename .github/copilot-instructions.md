@@ -188,9 +188,9 @@ Projects consume these packages as git dependencies:
 
 ```yaml
 # In consuming project's pubspec.yaml
-act_abstract_manager:
+act_life_cycle:
   git:
-    path: actlibs/act_abstract_manager
+    path: actlibs/act_life_cycle
 ```
 
 ### Branch Strategy

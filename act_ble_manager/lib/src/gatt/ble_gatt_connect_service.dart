@@ -5,13 +5,13 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_ble_manager/src/ble_manager.dart';
 import 'package:act_ble_manager/src/data/constants.dart' as ble_constants;
 import 'package:act_ble_manager/src/data/error_messages.dart' as error_messages;
 import 'package:act_ble_manager/src/models/ble_device.dart';
 import 'package:act_ble_manager/src/types/bond_state.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_platform_manager/act_platform_manager.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';

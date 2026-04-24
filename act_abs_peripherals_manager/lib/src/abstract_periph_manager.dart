@@ -2,12 +2,12 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_enable_service_utility/act_enable_service_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_permissions_manager/act_permissions_manager.dart';
 
 /// Builder of the [AbstractPeriphManager] manager
-abstract class AbstractPeriphBuilder<M extends AbstractPeriphManager> extends AbsManagerBuilder<M>
+abstract class AbstractPeriphBuilder<M extends AbstractPeriphManager> extends AbsLifeCycleFactory<M>
     with MPermissionsServiceBuilder {
   /// Class constructor
   AbstractPeriphBuilder(super.factory);

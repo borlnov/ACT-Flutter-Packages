@@ -29,8 +29,8 @@ dependencies:
   equatable: ^2.0.7
 
   # The abstract manager
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
   # This contains the amplify core library
   act_amplify_core:

@@ -4,18 +4,18 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_http_logging_manager/src/models/http_log.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/foundation.dart';
 
 /// Builder of the derived [HttpLoggingManager]
-abstract class AbsHttpLoggingBuilder<M extends HttpLoggingManager> extends AbsManagerBuilder<M> {
+abstract class AbsHttpLoggingBuilder<M extends HttpLoggingManager> extends AbsLifeCycleFactory<M> {
   /// Class constructor
   const AbsHttpLoggingBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager];
 }
@@ -40,7 +40,7 @@ class HttpLoggingManager extends AbsWithLifeCycle {
   /// Default constructor
   HttpLoggingManager() : _logStreamController = StreamController<HttpLog>.broadcast();
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -67,7 +67,7 @@ class HttpLoggingManager extends AbsWithLifeCycle {
     _logStreamController.add(tmpLog);
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await _logStreamController.close();

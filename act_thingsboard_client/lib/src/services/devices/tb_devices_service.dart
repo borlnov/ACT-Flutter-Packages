@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_thingsboard_client/src/managers/abs_tb_server_req_manager.dart';
 import 'package:act_thingsboard_client/src/services/devices/values/tb_device_values.dart';

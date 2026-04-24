@@ -17,7 +17,7 @@ class TbStdAuthServerReqBuilder<A extends AbsAuthManager>
               authGetter: globalGetIt().get<A>,
             ));
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [...super.dependsOn(), A];
 }

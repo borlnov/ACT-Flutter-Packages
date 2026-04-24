@@ -6,8 +6,8 @@
 import 'dart:io' show File;
 import 'dart:ui' show Locale;
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_remote_local_vers_file_manager/src/models/remote_local_dir_config.dart';
 import 'package:act_remote_local_vers_file_manager/src/models/remote_local_dir_options.dart';
@@ -26,7 +26,7 @@ import 'package:flutter/foundation.dart';
 abstract class AbsRemoteLocalVersFileBuilder<
     D extends MixinRemoteLocalVersFileType,
     C extends MixinRemoteLocalVersFileConfig<D>,
-    T extends AbsRemoteLocalVersFileManager<D>> extends AbsManagerBuilder<T> {
+    T extends AbsRemoteLocalVersFileManager<D>> extends AbsLifeCycleFactory<T> {
   /// Class constructor
   AbsRemoteLocalVersFileBuilder(super.factory);
 
@@ -65,7 +65,7 @@ abstract class AbsRemoteLocalVersFileManager<D extends MixinRemoteLocalVersFileT
   })  : _configManagerGetter = configManagerGetter,
         super();
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   @mustCallSuper
   Future<void> initLifeCycle() async {

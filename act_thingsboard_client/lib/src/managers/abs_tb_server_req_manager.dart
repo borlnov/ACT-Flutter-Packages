@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_thingsboard_client/act_thingsboard_client.dart';
 import 'package:act_thingsboard_client/src/constants/tb_constants.dart' as tb_constants;
@@ -12,11 +12,11 @@ import 'package:thingsboard_client/thingsboard_client.dart';
 
 /// This is the manager builder for the derived [AbsTbServerReqManager] manager
 abstract class AbsTbServerReqBuilder<Tb extends AbsTbServerReqManager>
-    extends AbsManagerBuilder<Tb> {
+    extends AbsLifeCycleFactory<Tb> {
   /// Class constructor
   AbsTbServerReqBuilder(super.factory);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager, TbNoAuthServerReqManager];
 }

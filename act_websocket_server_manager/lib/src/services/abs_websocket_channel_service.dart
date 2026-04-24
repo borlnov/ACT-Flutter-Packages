@@ -4,9 +4,9 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_http_logging_manager/act_http_logging_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_websocket_core/act_websocket_core.dart';
 import 'package:flutter/foundation.dart';
@@ -58,7 +58,7 @@ abstract class AbsWebsocketChannelService extends AbsWithLifeCycle
        _onClose = onClose,
        isClosed = false;
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -145,7 +145,7 @@ abstract class AbsWebsocketChannelService extends AbsWithLifeCycle
     return disposeLifeCycle();
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     isClosed = true;

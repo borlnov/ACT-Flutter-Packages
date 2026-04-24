@@ -4,7 +4,7 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_shared_auth/act_shared_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -61,7 +61,7 @@ mixin MixinMultiAuthService<P extends Enum> on MixinAuthService, AbsWithLifeCycl
     return provider.authStatus;
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -418,7 +418,7 @@ mixin MixinMultiAuthService<P extends Enum> on MixinAuthService, AbsWithLifeCycl
     _serviceStatusCtrl.add(status);
   }
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await Future.wait(_subs.map((sub) => sub.cancel()));

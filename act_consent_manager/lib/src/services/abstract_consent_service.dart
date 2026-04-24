@@ -4,9 +4,10 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_consent_manager/act_consent_manager.dart';
+import 'package:act_dart_result/act_dart_result.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
@@ -83,7 +84,7 @@ abstract class AbstractConsentService<T extends MixinConsentOptions> extends Abs
         _observersSubs = [],
         super();
 
-  /// {@macro act_abstract_manager.MixinUiLifeCycle.initAfterView}
+  /// {@macro act_life_cycle.MixinUiLifeCycle.initAfterView}
   @override
   Future<void> initAfterView(BuildContext context) async {
     await super.initAfterView(context);

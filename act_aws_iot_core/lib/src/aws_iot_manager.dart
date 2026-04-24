@@ -2,7 +2,6 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_amplify_cognito/act_amplify_cognito.dart';
 import 'package:act_amplify_core/act_amplify_core.dart';
 import 'package:act_aws_iot_core/src/mixins/mixin_aws_iot_conf.dart';
@@ -14,6 +13,7 @@ import 'package:act_aws_iot_core/src/services/aws_iot_shadows_service.dart';
 import 'package:act_dart_utility/act_dart_utility.dart';
 import 'package:act_global_manager/act_global_manager.dart';
 import 'package:act_internet_connectivity_manager/act_internet_connectivity_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:act_shared_auth/act_shared_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -25,7 +25,7 @@ class AwsIotBuilder<
     T extends AwsIotManager<AuthManager, AmplifyManager, ConfigManager>,
     AuthManager extends AbsAuthManager,
     AmplifyManager extends AbsAmplifyManager,
-    ConfigManager extends MixinAwsIotConf> extends AbsManagerBuilder<T> {
+    ConfigManager extends MixinAwsIotConf> extends AbsLifeCycleFactory<T> {
   /// Class constructor
   AwsIotBuilder(super.factory);
 

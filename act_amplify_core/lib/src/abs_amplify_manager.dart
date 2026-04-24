@@ -4,18 +4,18 @@
 
 import 'dart:convert';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_amplify_core/src/abs_amplify_service.dart';
 import 'package:act_amplify_core/src/models/amplify_manager_config.dart';
 import 'package:act_config_manager/act_config_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/widgets.dart';
 
 /// This is the abstract builder for the AbsAmplifyManager manager
 abstract class AbsAmplifyBuilder<T extends AbsAmplifyManager, C extends AbstractConfigManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// Class constructor
   AbsAmplifyBuilder(super.factory);
 

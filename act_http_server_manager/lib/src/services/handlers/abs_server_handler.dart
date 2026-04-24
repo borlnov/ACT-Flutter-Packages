@@ -2,8 +2,8 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_http_logging_manager/act_http_logging_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:shelf/shelf.dart' show Request, Response;
 
 /// This is the abstract class for a server handler

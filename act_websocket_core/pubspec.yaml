@@ -16,8 +16,8 @@ dependencies:
 
   web_socket_channel: ^3.0.3
 
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
   act_dart_utility:
     path: ../act_dart_utility

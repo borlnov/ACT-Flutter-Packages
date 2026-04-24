@@ -4,17 +4,17 @@
 
 import 'dart:typed_data';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 import 'package:file_saver/file_saver.dart';
 
 /// Builder for the file saver manager
-class FileSaverBuilder extends AbsManagerBuilder<FileSaverManager> {
+class FileSaverBuilder extends AbsLifeCycleFactory<FileSaverManager> {
   /// Class constructor
   const FileSaverBuilder() : super(FileSaverManager.new);
 
-  /// {@macro act_abstract_manager.AbsManagerBuilder.dependsOn}
+  /// {@macro abs_life_cycle_factory.AbsLifeCycleFactory.dependsOn}
   @override
   Iterable<Type> dependsOn() => [LoggerManager];
 }

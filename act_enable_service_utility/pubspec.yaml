@@ -28,8 +28,8 @@ dependencies:
 
   equatable: ^2.0.7
 
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
   act_contextual_views_manager:
     path: ../act_contextual_views_manager
@@ -40,8 +40,8 @@ dependencies:
   act_global_manager:
     path: ../act_global_manager
 
-  act_life_cycle_manager:
-    path: ../act_life_cycle_manager
+  act_app_life_cycle_manager:
+    path: ../act_app_life_cycle_manager
 
   act_logger_manager:
     path: ../act_logger_manager

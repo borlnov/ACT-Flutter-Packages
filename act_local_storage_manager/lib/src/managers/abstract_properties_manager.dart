@@ -6,15 +6,15 @@
 
 import 'dart:async';
 
-import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:act_global_manager/act_global_manager.dart';
+import 'package:act_life_cycle/act_life_cycle.dart';
 import 'package:act_local_storage_manager/src/models/shared_preferences_item.dart';
 import 'package:act_local_storage_manager/src/services/properties_singleton.dart';
 import 'package:act_logger_manager/act_logger_manager.dart';
 
 /// Builder for creating the PropertiesManager
 abstract class AbstractPropertiesBuilder<T extends AbstractPropertiesManager>
-    extends AbsManagerBuilder<T> {
+    extends AbsLifeCycleFactory<T> {
   /// A factory to create a manager instance
   const AbstractPropertiesBuilder(super.factory);
 
@@ -45,7 +45,7 @@ abstract class AbstractPropertiesManager extends AbsWithLifeCycle {
       : isFirstStart = true,
         super();
 
-  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
+  /// {@macro act_life_cycle.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

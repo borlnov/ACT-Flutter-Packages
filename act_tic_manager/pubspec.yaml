@@ -25,8 +25,8 @@ dependencies:
 
   rxdart: ^0.28.0
 
-  act_abstract_manager:
-    path: ../act_abstract_manager
+  act_life_cycle:
+    path: ../act_life_cycle
 
 dev_dependencies:
   flutter_test:
