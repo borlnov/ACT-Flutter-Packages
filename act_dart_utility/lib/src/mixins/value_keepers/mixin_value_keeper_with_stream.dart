@@ -4,26 +4,35 @@
 
 import 'dart:async' show StreamController;
 
-import 'package:act_dart_utility/src/mixins/value_keepers/mixin_disposable_value_keeper.dart';
+import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 
 /// {@template act_dart_utility.MixinValueKeeperWithStream}
 /// Adds a stream to a ValueKeeper to notify the listeners when the value changes
 ///
-/// Because it adds a stream, it also adds a [dispose] method to close the stream controller when
-/// it's no longer needed. Therefore, you should call the [dispose] method when you no longer need
-/// the model to avoid memory leaks.
+/// Because it adds a stream, it also adds a [disposeLifeCycle] method to close the stream
+/// controller when it's no longer needed. Therefore, you should call the [disposeLifeCycle] method
+/// when you no longer need the model to avoid memory leaks.
 /// {@endtemplate}
-mixin MixinValueKeeperWithStream<T> on MixinDisposableValueKeeper<T> {
+mixin MixinValueKeeperWithStream<S extends T, T>
+    on BaseValueKeeper<S, T>, MixinWithLifeCycleDispose {
   /// This stream controller is used to notify the listeners when the value changes
-  final StreamController<T> _valueStreamController = StreamController<T>.broadcast();
+  final StreamController<S> _valueStreamController = StreamController<S>.broadcast();
+
+  /// {@template act_dart_utility.MixinValueKeeperWithStream.emitUnchangedValue}
+  /// Whether to emit the value in the stream even if it is the same as the current value.
+  /// By default, it is false, which means that the stream will only emit a new value if it is
+  /// different from the current value
+  /// {@endtemplate}
+  bool get emitUnchangedValue;
 
   /// This stream is used to notify the listeners when the value changes
-  Stream<T> get valueStream => _valueStreamController.stream;
+  Stream<S> get valueStream => _valueStreamController.stream;
 
   /// {@macro act_dart_utility.ValueKeeper.value.setter}
   @override
-  set value(T newValue) {
-    if (newValue == value) {
+  set value(S newValue) {
+    if (!emitUnchangedValue && newValue == value) {
       // Nothing to do
       return;
     }
@@ -32,11 +41,11 @@ mixin MixinValueKeeperWithStream<T> on MixinDisposableValueKeeper<T> {
     _valueStreamController.add(newValue);
   }
 
-  /// {@macro act_dart_utility.MixinDisposableValueKeeper.dispose}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
-  Future<void> dispose() async {
+  Future<void> disposeLifeCycle() async {
     await _valueStreamController.close();
 
-    return super.dispose();
+    return super.disposeLifeCycle();
   }
 }

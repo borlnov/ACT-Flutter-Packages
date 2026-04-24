@@ -32,7 +32,7 @@ class SimpleMultiAuthService<P extends Enum> extends AbsWithLifeCycle
   })  : logsHelper = LogsHelper(logsManager: appLogger(), logsCategory: logsCategory),
         _initProviderKey = currentProvider;
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

@@ -7,6 +7,8 @@
 library;
 
 export 'src/mixins/mixin_ui_life_cycle.dart';
+export 'src/mixins/mixin_with_life_cycle.dart';
+export 'src/mixins/mixin_with_life_cycle_dispose.dart';
 export 'src/services/abs_manager_builder.dart';
 export 'src/services/abs_with_life_cycle.dart';
 export 'src/services/abs_with_life_cycle_and_ui.dart';

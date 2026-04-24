@@ -3,28 +3,11 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
-import 'package:flutter/widgets.dart';
+import 'package:act_abstract_manager/src/mixins/mixin_with_life_cycle.dart';
+import 'package:act_abstract_manager/src/mixins/mixin_with_life_cycle_dispose.dart';
 
 /// Abstract class for all the application managers and services
-abstract class AbsWithLifeCycle {
+abstract class AbsWithLifeCycle with MixinWithLifeCycleDispose, MixinWithLifeCycle {
   /// Default constructor
   const AbsWithLifeCycle();
-
-  /// {@template act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
-  /// Asynchronous initialization of the class.
-  /// {@endtemplate}
-  ///
-  /// Call `super.initLifeCycle()` first in the derived class method (unless otherwise specified by
-  /// a derived class)
-  @mustCallSuper
-  Future<void> initLifeCycle() async {}
-
-  /// {@template act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
-  /// Default dispose for manager
-  /// {@endtemplate}
-  ///
-  /// Call `super.disposeLifeCycle()` at the end in the derived class method (unless otherwise
-  /// specified by a derived class)
-  @mustCallSuper
-  Future<void> disposeLifeCycle() async {}
 }

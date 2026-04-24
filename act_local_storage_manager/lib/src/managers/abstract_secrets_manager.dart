@@ -49,7 +49,7 @@ abstract class AbstractSecretsManager extends AbsWithLifeCycle {
     required this.confGetter,
   }) : super();
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

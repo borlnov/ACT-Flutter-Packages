@@ -5,7 +5,8 @@
 # SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
 name: act_dart_utility
-description: This package contains useful methods and classes which extends dart functionality.
+description: This package contains useful methods and classes which extends dart
+  functionality.
 publish_to: none
 
 # This package supports all platforms listed below.
@@ -18,8 +19,8 @@ platforms:
   windows:
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-  flutter: ">=3.0.0 <4.0.0"
+  sdk: ^3.9.2
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
@@ -30,6 +31,9 @@ dependencies:
   mutex: ^3.1.0
 
   path: ^1.9.1
+
+  act_abstract_manager:
+    path: ../act_abstract_manager
 
   # Logger manager
   act_logger_manager:

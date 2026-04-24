@@ -58,7 +58,7 @@ abstract class AbsWebsocketChannelService extends AbsWithLifeCycle
        _onClose = onClose,
        isClosed = false;
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -145,7 +145,7 @@ abstract class AbsWebsocketChannelService extends AbsWithLifeCycle
     return disposeLifeCycle();
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     isClosed = true;

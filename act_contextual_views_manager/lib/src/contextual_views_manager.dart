@@ -51,7 +51,7 @@ class ContextualViewsManager extends AbsWithLifeCycle {
   })  : _viewBuilder = viewBuilder,
         _routerManagerGetter = routerManagerGetter;
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -82,7 +82,7 @@ class ContextualViewsManager extends AbsWithLifeCycle {
         doAction: doAction,
       );
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     final futures = <Future>[

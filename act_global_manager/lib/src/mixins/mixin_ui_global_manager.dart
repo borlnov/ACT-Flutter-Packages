@@ -22,7 +22,7 @@ mixin MixinUiGlobalManager on AbsGlobalManager {
   List<AbsWithLifeCycleAndUi> get registeredManagersWithUi =>
       registeredManagers.whereType<AbsWithLifeCycleAndUi>().toList(growable: false);
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();

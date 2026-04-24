@@ -142,7 +142,7 @@ class LocalesManager extends AbsWithLifeCycleAndUi {
         _getSupportedLocales = getSupportedLocales,
         _propertiesGetter = propertiesGetter;
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -220,7 +220,7 @@ class LocalesManager extends AbsWithLifeCycleAndUi {
     _wantedLocale = localeFound;
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await Future.wait([

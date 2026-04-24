@@ -11,7 +11,7 @@ import 'package:act_shared_auth/act_shared_auth.dart';
 /// [AbsWithLifeCycle].
 mixin MixinAuthStatusCallbackOnService<AuthManager extends AbsAuthManager>
     on AbsWithLifeCycle, MixinAuthStatusCallback<AuthManager> {
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
@@ -19,7 +19,7 @@ mixin MixinAuthStatusCallbackOnService<AuthManager extends AbsAuthManager>
     await initUpdate();
   }
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.disposeLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
   Future<void> disposeLifeCycle() async {
     await disposeUpdate();

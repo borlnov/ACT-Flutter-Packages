@@ -2,12 +2,14 @@
 //
 // SPDX-License-Identifier: LicenseRef-ALLCircuits-ACT-1.1
 
+import 'package:act_abstract_manager/act_abstract_manager.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 /// This state is used by the `BlocForMixin`. When you want to create a mixin for a bloc, use this
 /// class as a base for your states.
-abstract class BlocStateForMixin<S extends BlocStateForMixin<S>> extends Equatable {
+abstract class BlocStateForMixin<S extends BlocStateForMixin<S>> extends Equatable
+    with MixinWithLifeCycleDispose {
   /// Mark the class as a const class.
   const BlocStateForMixin();
 
@@ -18,13 +20,6 @@ abstract class BlocStateForMixin<S extends BlocStateForMixin<S>> extends Equatab
   /// {@endtemplate}
   @protected
   S copyWith();
-
-  /// {@template act_flutter_utility.BlocStateForMixin.dispose}
-  /// This method is called when the bloc is closed. It can be used to dispose resources used by
-  /// the state.
-  /// {@endtemplate}
-  @mustCallSuper
-  Future<void> dispose() async {}
 
   /// {@template act_flutter_utility.BlocStateForMixin.props}
   /// Empty [props] getter to force the [mustCallSuper] annotation.

@@ -6,7 +6,8 @@
 
 # Project definition
 name: act_flutter_utility
-description: This package contains useful methods and classes which extends flutter functionality.
+description: This package contains useful methods and classes which extends
+  flutter functionality.
 
 # Project configuration
 publish_to: none
@@ -45,6 +46,9 @@ dependencies:
 
   # Tells which amount a widget is currently visible
   visibility_detector: ^0.4.0+2
+
+  act_abstract_manager:
+    path: ../act_abstract_manager
 
   act_config_manager:
     path: ../act_config_manager

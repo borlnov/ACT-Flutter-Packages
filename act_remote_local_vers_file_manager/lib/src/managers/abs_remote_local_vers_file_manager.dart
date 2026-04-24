@@ -65,7 +65,7 @@ abstract class AbsRemoteLocalVersFileManager<D extends MixinRemoteLocalVersFileT
   })  : _configManagerGetter = configManagerGetter,
         super();
 
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   @mustCallSuper
   Future<void> initLifeCycle() async {

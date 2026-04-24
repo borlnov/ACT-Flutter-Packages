@@ -4,14 +4,16 @@
 
 import 'dart:async' show FutureOr, StreamSubscription;
 
-import 'package:act_dart_utility/src/mixins/value_keepers/mixin_disposable_value_keeper.dart';
+import 'package:act_abstract_manager/act_abstract_manager.dart';
+import 'package:act_dart_utility/src/models/value_keepers/value_keeper.dart';
 import 'package:flutter/widgets.dart';
 
 /// {@template act_dart_utility.MixinValueKeeperOnStreamUpdate}
 /// This mixin should be used on ValueKeepers that need to update their value based on a listened
 /// stream.
 /// {@endtemplate}
-mixin MixinValueKeeperOnStreamUpdate<T, Listened> on MixinDisposableValueKeeper<T> {
+mixin MixinValueKeeperOnStreamUpdate<S extends T, T, Listened>
+    on BaseValueKeeper<S, T>, MixinWithLifeCycleDispose {
   /// This stream subscription is used to listen to the listened stream, and update the value keeper value
   StreamSubscription<Listened>? _listenedStreamSubscription;
 
@@ -22,7 +24,7 @@ mixin MixinValueKeeperOnStreamUpdate<T, Listened> on MixinDisposableValueKeeper<
   /// It should return null if the listened value cannot be parsed, or if it should not update the
   /// value keeper value.
   /// {@endtemplate}
-  T? Function(Listened listenedValue) get parserCallback;
+  S? Function(Listened listenedValue) get parserCallback;
 
   /// {@template act_dart_utility.MixinValueKeeperOnStreamUpdate.initStreamListener}
   /// This method should be called to initialize the stream listener, and optionally set the initial
@@ -57,11 +59,11 @@ mixin MixinValueKeeperOnStreamUpdate<T, Listened> on MixinDisposableValueKeeper<
     value = parsedValue;
   }
 
-  /// {@macro act_dart_utility.MixinDisposableValueKeeper.dispose}
+  /// {@macro act_abstract_manager.MixinWithLifeCycleDispose.disposeLifeCycle}
   @override
-  Future<void> dispose() async {
+  Future<void> disposeLifeCycle() async {
     await _listenedStreamSubscription?.cancel();
 
-    return super.dispose();
+    return super.disposeLifeCycle();
   }
 }

@@ -7,7 +7,7 @@ import 'package:act_web_local_storage_manager/src/services/cookie_session_single
 
 /// This is the mixin on the [AbstractPropertiesManager] to use session cookies
 mixin MixinSessionProperties on AbstractPropertiesManager {
-  /// {@macro act_abstract_manager.AbsWithLifeCycle.initLifeCycle}
+  /// {@macro act_abstract_manager.MixinWithLifeCycle.initLifeCycle}
   @override
   Future<void> initLifeCycle() async {
     await super.initLifeCycle();
